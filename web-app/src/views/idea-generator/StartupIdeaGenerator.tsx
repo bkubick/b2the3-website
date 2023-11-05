@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-import IdeaGeneratorForm from './idea-generator-form';
+import IdeaGeneratorForm from './IdeaGeneratorForm';
 import { Tab, TopNav } from 'src/components/navigation';
 import { Spinner } from 'src/components/loading';
 
