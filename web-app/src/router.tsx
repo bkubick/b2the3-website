@@ -5,6 +5,7 @@ import App from './views/App';
 import ToolMenu from './views/tool-menu';
 import StartupIdeaGenerator from './views/idea-generator/startup-idea-generator';
 import CoverLetterGenerator from './views/cover-letter-generator/cover-letter-generator';
+import PersonalPortfolio from './views/personal-portfolio/PersonalPortfolio';
 
 
 const router = createBrowserRouter([
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <ToolMenu />
+      },
+      {
+        path: "/portfolio",
+        element: <PersonalPortfolio />,
       },
       {
         path: "/startup_idea_generator",

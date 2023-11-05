@@ -4,6 +4,22 @@
 import React, { ReactElement } from 'react';
 
 
+const monthNameByNumber: Record<number, string> = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December',
+};
+
+
 /**
  * Splits the text into lines and wraps each line in <br/> tags.
  * 
@@ -15,6 +31,39 @@ function splitLines(text: string): ReactElement[] {
 }
 
 
-export {
-    splitLines,
+/**
+ * Returns the month name for the given month number.
+ * 
+ * @param month the month number.
+ * @param shortHand whether to return the short-hand version of the month name.
+ * @returns the month name for the given month number.
+ */
+function getMonthByNumber(month: number, shortHand: boolean = false): string {
+    var monthName: string = monthNameByNumber[month];
+
+    if (shortHand) {
+        monthName = monthName.substring(0, 3);
+    }
+
+    return monthName;
 }
+
+
+/**
+ * Creates a markup object for dangerously setting the inner HTML of a react
+ * element.
+ * 
+ * @param value the value to set the inner HTML to.
+ * @returns the markup object for dangerously setting the inner HTML of a react
+ * element.
+ */
+function createMarkup(value: string) {
+    return {__html: value};
+}
+
+
+export {
+    createMarkup,
+    getMonthByNumber,
+    splitLines,
+};
