@@ -17,8 +17,14 @@ module.exports = {
     entry: './src/index.tsx',
     devtool: 'eval-source-map',
     mode: 'development',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: './index.js',
+        publicPath: '/'
+    },
     devServer: {
-        watchFiles: ["src/**/*", "public/**/*"]
+        watchFiles: ["src/**/*", "public/**/*"],
+        historyApiFallback: true,
     },
     module: {
         rules: [
