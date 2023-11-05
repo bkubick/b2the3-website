@@ -66,4 +66,56 @@ function generateIdeaPrompt(industries: string[],
 }
 
 
-export { generateIdeaPrompt };
+/**
+ * This function generates the prompt to be used in conjunction with the AI model
+ * to generate a cover letter from user and job posting information.
+ * 
+ * @param position the position of the job posting
+ * @param company the company of the job posting
+ * @param jobDescription the job description of the job posting
+ * @param personalExperiences the personal experiences of the user
+ * @param coverLetterExamples the cover letter examples the user has provided
+ * @returns the generated cover letter prompt.
+ */
+function generatorCoverLetterPrompt(position: string,
+                                    company: string,
+                                    jobDescription: string,
+                                    personalExperiences: string,
+                                    coverLetterExamples?: string[]): string {
+    let prompt: string = `
+        Please write a cover letter between 350 and 450 words for the following
+        job posting for the position of ${position || '\"\"'} at ${company || '\"\"'}:
+
+        Job Description:
+        "${jobDescription}"
+        
+        There is no need to include a header or footer. The cover letter should be written
+        in a professional manner and should be tailored to the job posting using the following
+        experiences:
+
+        My Experiences:
+        "${personalExperiences}"\n
+    `;
+
+    if (coverLetterExamples && coverLetterExamples.length > 0) {
+        prompt += `
+            Please use my following cover letters that I have used in the
+            past as a reference:\n\n
+        `;
+
+        coverLetterExamples.forEach((coverLetter, index) => {
+            if (coverLetter) {
+                prompt += `
+                    Cover Letter Example ${index + 1}:\n
+                    "${coverLetter}"\n\n
+                `;
+            }
+        });
+    
+    }
+
+    return prompt.trimStart();
+};
+
+
+export { generatorCoverLetterPrompt, generateIdeaPrompt };
