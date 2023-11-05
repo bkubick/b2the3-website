@@ -27,20 +27,14 @@ class ToolMenu extends React.Component<Props, State> {
     render() {
         return (
             <div id='app' className='container mx-auto h-screen flex'>
-                <Link to='/portfolio'>
-                    <div className='card'>
-                        Personal Portfolio
-                    </div>
+                <Link to='/portfolio' className='card'>
+                    Personal Portfolio
                 </Link>
-                <Link to='/cover_letter_generator'>
-                    <div className='card'>
-                        Cover Letter Generator
-                    </div>
+                <Link to='/cover_letter_generator' className='card'>
+                    Cover Letter Generator
                 </Link>
-                <Link to='/startup_idea_generator'>
-                    <div className='card'>
-                        Startup Idea Generator
-                    </div>
+                <Link to='/startup_idea_generator' className='card'>
+                    Startup Idea Generator
                 </Link>
             </div>
         )
