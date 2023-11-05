@@ -30,3 +30,11 @@ body {
 .btn-primary-outline:hover {
   @apply -translate-y-1 shadow-md shadow-primary;
 }
+
+.card {
+  @apply p-2 rounded;
+}
+
+.card:hover {
+  @apply shadow-lg shadow-primary;
+}

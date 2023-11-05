@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from "react-router-dom";
 
 import { addCursorFollowerListener } from 'src/utils/followers';
 
@@ -26,7 +27,7 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <div id='app' className='container mx-auto h-screen flex'>
-                App
+                <Outlet />
             </div>
         )
     }
