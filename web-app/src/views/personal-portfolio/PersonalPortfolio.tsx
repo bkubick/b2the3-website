@@ -44,24 +44,11 @@ class PersonalPortfolio extends React.Component<Props, State> {
     }
 
     componentDidMount(): void {
-        this.addCursorFollowerListener();
         this.addNavbarSectionScrollListener();
     }
 
     updateActiveSection(section: string): void {
         this.setState({ activeSection: section });
-    }
-
-    addCursorFollowerListener(): void {
-        const root: HTMLElement = document.documentElement;
-
-        document.addEventListener('mousemove', evt => {
-            let x: number = evt.clientX / innerWidth;
-            let y: number = evt.clientY / innerHeight;
-        
-            root.style.setProperty('--mouse-x', x.toString());
-            root.style.setProperty('--mouse-y', y.toString());
-        });
     }
 
     addNavbarSectionScrollListener(): void {
