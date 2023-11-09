@@ -133,4 +133,4 @@ function Limit(limit: number, message?: string): (value?: any) => React.JSX.Elem
 }
 
 
-export { FieldMatch, Password, Required, Limit, ValidateEmail, ValidationPipeline };
+export { Error, FieldMatch, Password, Required, Limit, ValidateEmail, ValidationPipeline };
