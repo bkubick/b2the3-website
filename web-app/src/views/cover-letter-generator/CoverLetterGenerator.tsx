@@ -18,7 +18,7 @@ interface State {
 class CoverLetterGenerator extends React.Component<Props, State> {
 
     /**
-     * The tabs for the startup idea generator.
+     * The tabs for the cover letter generator.
      */
     tabs: Tab[] = [
         { name: 'Cover Letter', id: 'cover-letter' },
