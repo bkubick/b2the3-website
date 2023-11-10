@@ -21,11 +21,11 @@ const router = createBrowserRouter([
         element: <ToolMenu />,
       },
       {
-        path: "/startup_idea_generator",
+        path: "/tools/startup_idea_generator",
         element: <StartupIdeaGenerator />,
       },
       {
-        path: "/cover_letter_generator",
+        path: "/tools/cover_letter_generator",
         element: <CoverLetterGenerator />,
       },
     ]

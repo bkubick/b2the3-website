@@ -5,6 +5,11 @@ import { addCursorFollowerListener } from 'src/utils/followers';
 
 import Header from './Header';
 
+interface Section {
+    title: string;
+    route: string;
+}
+
 
 interface Props {}
 
@@ -14,9 +19,9 @@ interface State {}
 
 class App extends React.Component<Props, State> {
 
-    sections: string[] = [
-        'home',
-        'tools',
+    sections: Section[] = [
+        {title: 'home', route: '/'},
+        {title: 'tools', route: '/tools'},
     ];
 
     constructor(props: Props) {
@@ -34,7 +39,7 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <div id='app' className='container mx-auto h-screen w-full'>
-                <Header sections={ this.sections } activeSection='home'/>
+                <Header sections={ this.sections } />
                 <div className='mx-auto flex container-height'>
                     <Outlet />
                 </div>

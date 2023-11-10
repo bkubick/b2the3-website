@@ -1,17 +1,24 @@
 import React from 'react';
+import { Link, useLocation } from "react-router-dom";
 
 import Logo from 'src/static/img/b_to_the_3_logo.svg';
 
 
+interface Section {
+    title: string;
+    route: string;
+}
+
+
 interface Props {
-    sections: string[];
-    activeSection: string;
+    sections: Section[];
+    activeSection: Section;
     classNames?: string;
 }
 
 
 interface State {
-    localActiveSection: string;
+    localActiveSection: Section;
     startingActiveCircleXPosition: number;
     currentActiveCircleXPosition: number;
 }
@@ -28,8 +35,8 @@ class Header extends React.Component<Props, State> {
             localActiveSection: this.props.activeSection,
         };
 
-        this.props.sections.forEach((section: string) => {
-            this.navLinkSectionIds[section] = `nav-link-section-${section}`;
+        this.props.sections.forEach((section: Section) => {
+            this.navLinkSectionIds[section.title] = `nav-link-section-${section.title}`;
         });
     }
 
@@ -37,9 +44,10 @@ class Header extends React.Component<Props, State> {
         this.addResizeWindowListener();
 
         const circleStartingXPos: number = this.getNavbarSectionXPosition(this.props.sections[0]);
+        const currentActiveCircleXPos: number = this.getNavbarSectionXPosition(this.props.activeSection);
         this.setState({
             startingActiveCircleXPosition: circleStartingXPos,
-            currentActiveCircleXPosition: circleStartingXPos,
+            currentActiveCircleXPosition: currentActiveCircleXPos,
         });
     }
 
@@ -52,8 +60,8 @@ class Header extends React.Component<Props, State> {
         });
     }
 
-    getNavbarSectionXPosition(section: string): number {
-        const sectionElement: HTMLElement | null = document.getElementById(this.navLinkSectionIds[section]);
+    getNavbarSectionXPosition(section: Section): number {
+        const sectionElement: HTMLElement | null = document.getElementById(this.navLinkSectionIds[section.title]);
 
         if (!sectionElement) {
             throw Error(`Navbar Section ${section} does not exist.`)
@@ -65,8 +73,8 @@ class Header extends React.Component<Props, State> {
         return this.state.currentActiveCircleXPosition - this.state.startingActiveCircleXPosition; 
     }
 
-    navItem(section: string): React.JSX.Element {
-        if (this.props.activeSection === section && this.state.localActiveSection != this.props.activeSection) {
+    navItem(section: Section): React.JSX.Element {
+        if (this.props.activeSection.title === section.title && this.state.localActiveSection.title != this.props.activeSection.title) {
             this.setState({
                 localActiveSection: section,
                 currentActiveCircleXPosition: this.getNavbarSectionXPosition(section),
@@ -82,12 +90,10 @@ class Header extends React.Component<Props, State> {
         }
 
         return (
-            <div key={section} className='mx-1 text-center'>
-                <a id={ this.navLinkSectionIds[section] } href={`#${section}`}>
-                    <div className={ titleClass }>
-                        { section }
-                    </div>
-                </a>
+            <div key={section.title} className='mx-1 text-center'>
+                <Link id={ this.navLinkSectionIds[section.title] } to={section.route} className={ titleClass }>
+                    { section.title }
+                </Link>
                 {
                     section == this.props.sections[0] ? (
                         <div id="active-nav-circle" className="leading-4" style={ activeCircleStyle }>
@@ -106,7 +112,7 @@ class Header extends React.Component<Props, State> {
                 <div className="text-white flex">
                     <Logo className='logo'/>
                     <div className='mx-5 flex my-2'>
-                        { this.props.sections.map((section: string) => {
+                        { this.props.sections.map((section: Section) => {
                             return this.navItem(section);
                         })}
                     </div>
@@ -116,4 +122,27 @@ class Header extends React.Component<Props, State> {
     }
 }
 
-export default Header;
+const HeaderWrapper = (props: Props) => {
+    const location = useLocation();
+
+    const activeSection = props.sections.find((section: Section) => {
+        if (location.pathname === '/' && section.route === '/') {
+            return true;
+        }
+        
+        if (location.pathname.startsWith(section.route) && section.route !== '/') {
+            return true;
+        } 
+        return false;
+    });
+
+    if (!activeSection) {
+        throw Error(`No active section found for route ${location.pathname}`);
+    }
+
+    return (
+        <Header {...props} activeSection={ activeSection }/>
+    )
+}
+
+export default HeaderWrapper;
