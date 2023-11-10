@@ -35,7 +35,7 @@ class App extends React.Component<Props, State> {
         return (
             <div id='app' className='container mx-auto h-screen w-full'>
                 <Header sections={ this.sections } activeSection='home'/>
-                <div className='mx-auto flex h-[calc(100vh-96px)]'>
+                <div className='mx-auto flex container-height'>
                     <Outlet />
                 </div>
             </div>

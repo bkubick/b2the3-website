@@ -15,6 +15,10 @@ body {
   }   
 }
 
+.container-height {
+  @apply h-[calc(100vh-96px)];
+}
+
 .btn {
   @apply font-bold py-1 px-2 rounded-md;
 }
