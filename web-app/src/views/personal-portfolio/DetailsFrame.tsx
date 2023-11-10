@@ -186,7 +186,7 @@ class DetailsFrame extends React.Component<Props, State> {
 
     render(): React.JSX.Element {
         return (
-            <div className="mx-12 mt-20">
+            <div className="ml-12">
                 <InView>
                     {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                         <div ref={ ref } id="about" className={`section mb-20 ${inView ? 'animate-fade-in' : ''}`}>

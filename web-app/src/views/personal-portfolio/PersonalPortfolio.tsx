@@ -78,21 +78,19 @@ class PersonalPortfolio extends React.Component<Props, State> {
 
     render() {
         return (
-            <div id='app' className='container mx-auto h-screen flex'>
-                <div className='grid lg:grid-cols-5'>
-                    <div className='col-span-2 lg:overflow-hidden flex'>
-                        <div className='overflow-y-scroll no-scrollbar'>
-                            <SummaryFrame user={ this.state.user } activeSection={this.state.activeSection} sections={this.sections} classNames='lg:h-screen'></SummaryFrame>
-                        </div>
+            <div className='grid lg:grid-cols-5'>
+                <div className='col-span-2 lg:overflow-hidden flex'>
+                    <div className='overflow-y-scroll no-scrollbar'>
+                        <SummaryFrame user={ this.state.user } classNames='h-full'></SummaryFrame>
                     </div>
-                    <div className='col-span-3 lg:overflow-hidden flex'>
-                        <div id="details-frame" className='overflow-y-scroll no-scrollbar'>
-                            <DetailsFrame
-                                user={ this.state.user }
-                                workExperiences={ this.state.workExperiences }
-                                projects={ this.state.projects }
-                                education={ this.state.education }></DetailsFrame>
-                        </div>
+                </div>
+                <div className='col-span-3 lg:overflow-hidden flex'>
+                    <div id="details-frame" className='overflow-y-scroll no-scrollbar'>
+                        <DetailsFrame
+                            user={ this.state.user }
+                            workExperiences={ this.state.workExperiences }
+                            projects={ this.state.projects }
+                            education={ this.state.education }></DetailsFrame>
                     </div>
                 </div>
             </div>

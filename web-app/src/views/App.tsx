@@ -3,6 +3,8 @@ import { Outlet } from "react-router-dom";
 
 import { addCursorFollowerListener } from 'src/utils/followers';
 
+import Header from './Header';
+
 
 interface Props {}
 
@@ -11,6 +13,11 @@ interface State {}
 
 
 class App extends React.Component<Props, State> {
+
+    sections: string[] = [
+        'home',
+        'tools',
+    ];
 
     constructor(props: Props) {
         super(props);
@@ -26,8 +33,11 @@ class App extends React.Component<Props, State> {
 
     render() {
         return (
-            <div id='app' className='container mx-auto h-screen flex'>
-                <Outlet />
+            <div id='app' className='container mx-auto h-screen w-full'>
+                <Header sections={ this.sections } activeSection='home'/>
+                <div className='mx-auto flex h-[calc(100vh-96px)]'>
+                    <Outlet />
+                </div>
             </div>
         )
     }
