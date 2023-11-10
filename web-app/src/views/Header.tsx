@@ -10,10 +10,13 @@ interface Section {
 }
 
 
-interface Props {
+interface WrappedProps {
     sections: Section[];
-    activeSection: Section;
     classNames?: string;
+}
+
+interface Props extends WrappedProps{
+    activeSection: Section;
 }
 
 
@@ -122,7 +125,7 @@ class Header extends React.Component<Props, State> {
     }
 }
 
-const HeaderWrapper = (props: Props) => {
+const HeaderWrapper = (props: WrappedProps) => {
     const location = useLocation();
 
     const activeSection = props.sections.find((section: Section) => {

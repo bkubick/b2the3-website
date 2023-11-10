@@ -1,4 +1,4 @@
-import { College } from '@/interface/school';
+import { College } from 'src/interface/school';
 import StartEndData from './StartEndDate';
 import { Technology } from '../interface/skill';
 

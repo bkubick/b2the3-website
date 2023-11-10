@@ -1,5 +1,5 @@
-import { Technology } from '@/interface/skill';
-import { College } from '@/interface/school';
+import { Technology } from 'src/interface/skill';
+import { College } from 'src/interface/school';
 import Company from './company';
 import StartEndData from './StartEndDate';
 

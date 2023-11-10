@@ -1,4 +1,4 @@
-import Company from '@/interface/company';
+import Company from 'src/interface/company';
 import { ProfessionalSkill, Technology } from '../interface/skill';
 
 

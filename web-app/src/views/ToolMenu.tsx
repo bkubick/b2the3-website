@@ -26,9 +26,9 @@ class ToolMenu extends React.Component<Props, State> {
 
     render() {
         return (
-            <div className='mx-auto flex align-middle justify-between mt-12'>
-                <div className='px-5'>
-                    <Link to='/tools/cover_letter_generator' className='card text-white'>
+            <div className='mt-12 w-full'>
+                <div className='px-5 mb-8 w-full'>
+                    <Link to='/tools/cover_letter_generator' className='card text-white w-full'>
                         Cover Letter Generator
                     </Link>
                 </div>

@@ -1,9 +1,9 @@
-import { College } from '@/interface/school';
-import { Education } from '@/interface/education';
-import { Project } from '@/interface/project';
+import { College } from 'src/interface/school';
+import { Education } from 'src/interface/education';
+import { Project } from 'src/interface/project';
 import { ProfessionalSkill, PersonalSkills, Technology } from './interface/skill';
-import { User } from '@/interface/user';
-import { WorkExperience } from '@/interface/work-experience';
+import { User } from 'src/interface/user';
+import { WorkExperience } from 'src/interface/work-experience';
 
 
 const columbia: College = {
