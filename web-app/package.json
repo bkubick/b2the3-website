@@ -51,7 +51,6 @@
   "scripts": {
     "predeploy": "npm run build",
     "build": "npm run type-check && webpack --mode production",
-    "deploy": "gh-pages -d dist",
     "start": "webpack-dev-server --open --mode development --config webpack.config.js",
     "type-check": "tsc"
   },
