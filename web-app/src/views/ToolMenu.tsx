@@ -26,16 +26,17 @@ class ToolMenu extends React.Component<Props, State> {
 
     render() {
         return (
-            <div id='app' className='container mx-auto h-screen flex'>
-                <Link to='/portfolio' className='card'>
-                    Personal Portfolio
-                </Link>
-                <Link to='/cover_letter_generator' className='card'>
-                    Cover Letter Generator
-                </Link>
-                <Link to='/startup_idea_generator' className='card'>
-                    Startup Idea Generator
-                </Link>
+            <div className='mx-auto flex align-middle justify-between mt-12'>
+                <div className='px-5'>
+                    <Link to='/cover_letter_generator' className='card text-white'>
+                        Cover Letter Generator
+                    </Link>
+                </div>
+                <div className='px-5'>
+                    <Link to='/startup_idea_generator' className='card text-white'>
+                        Startup Idea Generator
+                    </Link>
+                </div>
             </div>
         )
     }

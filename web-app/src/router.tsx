@@ -14,11 +14,11 @@ const router = createBrowserRouter([
     children: [  
       {
         path: '/',
-        element: <ToolMenu />
+        element: <PersonalPortfolio />
       },
       {
-        path: "/portfolio",
-        element: <PersonalPortfolio />,
+        path: "/tools",
+        element: <ToolMenu />,
       },
       {
         path: "/startup_idea_generator",
