@@ -5,6 +5,10 @@
 @import "src/static/css/fields.css";
 
 
+:root {
+  --header-size: 104px;
+}
+
 body {
   @apply bg-secondary cursor-default
 }
@@ -16,7 +20,7 @@ body {
 }
 
 .container-height {
-  @apply h-[calc(100vh-96px)];
+  @apply h-[calc(100vh-var(--header-size))];
 }
 
 .btn {
