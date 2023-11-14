@@ -9,5 +9,10 @@ declare module '*.svg' {
     export default ReactComponent;
 }
 
+declare module "*.png" {
+    const value: any;
+    export default value;
+ }
+
 
 declare module 'react-intersection-observer';
