@@ -1,5 +1,5 @@
+import { motion as m } from 'framer-motion';
 import React, { ReactElement } from 'react';
-import { InView } from 'react-intersection-observer';
 
 import IdeaGeneratorForm from './IdeaGeneratorForm';
 import { Tab, TopNav } from 'src/components/navigation';
@@ -104,35 +104,31 @@ class StartupIdeaGenerator extends React.Component<Props, State> {
      */
     render(): ReactElement {
         return (
-            <InView>
-                {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } className={`text-white w-full z-99 ${inView ? 'animate-fade-in' : ''}`}>
-                        <div className='grid lg:grid-cols-12'>
-                            <div className={`col-span-5 lg:overflow-hidden`}>
-                                <div className='overflow-y-scroll no-scrollbar pr-5'>
-                                    <div className='container-height'>
-                                        <h1 className='sticky top-0 z-10 backdrop-blur uppercase text-2xl font-medium py-5'>
-                                            Startup Idea Generator
-                                        </h1>
-                                        <IdeaGeneratorForm generatingHandler={ this.setGenerating } generatedStartupIdeaHandler={ this.setGeneratedStartupIdea }/>
-                                    </div>
-                                </div>
+            <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}} className={`text-white w-full`}>
+                <div className='grid lg:grid-cols-12'>
+                    <div className={`col-span-5 lg:overflow-hidden`}>
+                        <div className='overflow-y-scroll no-scrollbar pr-5'>
+                            <div className='container-height'>
+                                <h1 className='sticky top-0 z-10 backdrop-blur uppercase text-2xl font-medium py-5'>
+                                    Startup Idea Generator
+                                </h1>
+                                <IdeaGeneratorForm generatingHandler={ this.setGenerating } generatedStartupIdeaHandler={ this.setGeneratedStartupIdea }/>
                             </div>
-                            <div ref={ ref } className={`col-span-7 lg:overflow-hidden ${inView ? 'animate-fade-in' : ''}`}>
-                                <div className='overflow-y-scroll no-scrollbar pl-5'>
-                                    <div className='container-height'>
-                                        <TopNav tabs={ this.tabs } activeTab={ this.state.currentTab } setActiveTab={ this.setActiveTab }></TopNav>
+                        </div>
+                    </div>
+                    <div className={`col-span-7 lg:overflow-hidden`}>
+                        <div className='overflow-y-scroll no-scrollbar pl-5'>
+                            <div className='container-height'>
+                                <TopNav tabs={ this.tabs } activeTab={ this.state.currentTab } setActiveTab={ this.setActiveTab }></TopNav>
 
-                                        <div id={ this.tabs[0].id } className={`py-3 h-auto ${this.tabs[0].id === this.state.currentTab.id ? "visible" : "hidden"}`}>
-                                            { this.generateStartupIdeaTextDisplay }
-                                        </div>
-                                    </div>
+                                <div id={ this.tabs[0].id } className={`py-3 h-auto ${this.tabs[0].id === this.state.currentTab.id ? "visible" : "hidden"}`}>
+                                    { this.generateStartupIdeaTextDisplay }
                                 </div>
                             </div>
                         </div>
                     </div>
-                )}
-            </InView>
+                </div>
+            </m.div>
         );
       }
 };

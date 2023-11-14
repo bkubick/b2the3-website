@@ -1,3 +1,4 @@
+import { motion as m } from 'framer-motion';
 import React from 'react';
 
 import { Education } from 'src/interface/education';
@@ -78,7 +79,7 @@ class PersonalPortfolio extends React.Component<Props, State> {
 
     render() {
         return (
-            <div className='grid lg:grid-cols-5'>
+            <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}} className='grid lg:grid-cols-5'>
                 <div className='col-span-2 lg:overflow-hidden flex'>
                     <div className='overflow-y-scroll no-scrollbar'>
                         <SummaryFrame user={ this.state.user } classNames='container-height'></SummaryFrame>
@@ -93,7 +94,7 @@ class PersonalPortfolio extends React.Component<Props, State> {
                             education={ this.state.education }></DetailsFrame>
                     </div>
                 </div>
-            </div>
+            </m.div>
         )
     }
 }
