@@ -40,7 +40,7 @@ body {
 }
 
 .card {
-  @apply p-2 rounded;
+  @apply rounded;
 }
 
 .card:hover {

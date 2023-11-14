@@ -60,7 +60,7 @@ class DetailsFrame extends React.Component<Props, State> {
         return (
             <InView>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } key={ workExperience.company.name + workExperience.jobTitle } className={ `card mb-6 ${inView ? 'animate-fade-in' : ''}`}>
+                    <div ref={ ref } key={ workExperience.company.name + workExperience.jobTitle } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         { inView }
                         <div className='text-lg text-slate-300'>
                             { workExperience.company.name } - { workExperience.jobTitle }
@@ -97,7 +97,7 @@ class DetailsFrame extends React.Component<Props, State> {
         return (
             <InView>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } key={education.courses + education.degree} className={ `card mb-6 ${inView ? 'animate-fade-in' : ''}`}>
+                    <div ref={ ref } key={education.courses + education.degree} className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <div className='text-lg text-slate-300'>
                             { education.school.name } - { education.degree }
                         </div>
@@ -122,7 +122,7 @@ class DetailsFrame extends React.Component<Props, State> {
         return (
             <InView>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } key={ project.title } className={ `card mb-6 ${inView ? 'animate-fade-in' : ''}`}>
+                    <div ref={ ref } key={ project.title } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <div className='text-lg text-slate-300 flex items-center'>
                             { project.title }
                             <span className='ml-4'>
