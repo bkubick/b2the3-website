@@ -67,10 +67,10 @@ class ToolMenu extends React.Component<Props, State> {
     renderToolCard(toolCard: ToolCard, index: number) {
         return (
             <div key={index} className='px-5 mb-8 w-full flex h-fit'>
-                <Link to={toolCard.link} className='card p-6 text-white w-full'>
-                    <h2 className='text-2xl mb-2'>{toolCard.title}</h2>
-                    <p className='text-sm'>{toolCard.description}</p>
-                    { toolCard.image ? <img src={toolCard.image} alt={toolCard.title} className='w-full mt-4' /> : null}
+                <Link to={toolCard.link} className='card p-12 text-white w-full'>
+                    { toolCard.image ? <img src={toolCard.image} alt={toolCard.title} className='mt-4 w-8/12 mx-auto' /> : null}
+                    <h2 className='text-2xl mb-2 text-center'>{toolCard.title}</h2>
+                    <p className='text-xs text-justify'>{toolCard.description}</p>
                 </Link>
             </div>
         )
