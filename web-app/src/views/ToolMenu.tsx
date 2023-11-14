@@ -1,4 +1,5 @@
 import React from 'react';
+import { InView } from 'react-intersection-observer';
 import { Link } from "react-router-dom";
 
 import CoverLetterGeneratorImg from 'src/static/img/pages/cover_letter_generator.png';
@@ -78,9 +79,13 @@ class ToolMenu extends React.Component<Props, State> {
 
     render() {
         return (
-            <div className='my-12 w-full flex'>
-                { this.toolCards.map((toolCard, index) => this.renderToolCard(toolCard, index)) }
-            </div>
+            <InView>
+                {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
+                    <div ref={ ref } className={`my-12 w-full flex z-99 ${inView ? 'animate-fade-in' : ''}`}>
+                        { this.toolCards.map((toolCard, index) => this.renderToolCard(toolCard, index)) }
+                    </div>
+                )}
+            </InView>
         )
     }
 }
