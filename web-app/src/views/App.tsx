@@ -1,7 +1,8 @@
 import React from 'react';
-import { Outlet } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 import { addCursorFollowerListener } from 'src/utils/followers';
+import RoutesWithAnimation from './RoutesWithAnimation';
 
 import Header from './Header';
 
@@ -39,13 +40,16 @@ class App extends React.Component<Props, State> {
     render() {
         return (
             <div id='app' className='container mx-auto h-screen w-full'>
-                <Header sections={ this.sections } />
-                <div className='mx-auto flex container-height'>
-                    <Outlet />
-                </div>
+                <BrowserRouter>
+                    <Header sections={ this.sections } />
+                    <div className='mx-auto flex container-height'>
+                        <RoutesWithAnimation />
+                    </div>
+                </BrowserRouter>
             </div>
         )
     }
 }
+
 
 export default App;

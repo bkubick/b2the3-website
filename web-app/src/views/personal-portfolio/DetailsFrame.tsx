@@ -40,7 +40,7 @@ class DetailsFrame extends React.Component<Props, State> {
 
     getPill(value: string): React.JSX.Element {
         this.keyValue += 1;
-        return <span key={this.keyValue} className="pill mx-1 mb-1 text-primary border-primary">{ value }</span>
+        return <span key={`pill-${this.keyValue}`} className="pill mx-1 mb-1 text-primary border-primary">{ value }</span>
     }
 
     getDateDisplay(startEndData: StartEndData): string {
@@ -58,10 +58,9 @@ class DetailsFrame extends React.Component<Props, State> {
     workExperienceCard(workExperience: WorkExperience): React.JSX.Element {
         this.keyValue += 1;
         return (
-            <InView>
+            <InView key={ workExperience.company.name + workExperience.jobTitle }>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } key={ workExperience.company.name + workExperience.jobTitle } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
-                        { inView }
+                    <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <div className='text-lg text-slate-300'>
                             { workExperience.company.name } - { workExperience.jobTitle }
                         </div>
@@ -95,9 +94,9 @@ class DetailsFrame extends React.Component<Props, State> {
 
     educationCard(education: Education): React.JSX.Element {
         return (
-            <InView>
+            <InView key={education.courses + education.degree}>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } key={education.courses + education.degree} className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
+                    <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <div className='text-lg text-slate-300'>
                             { education.school.name } - { education.degree }
                         </div>
@@ -120,9 +119,9 @@ class DetailsFrame extends React.Component<Props, State> {
     projectCard(project: Project): React.JSX.Element {
         this.keyValue += 1;
         return (
-            <InView>
+            <InView key={ project.title }>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } key={ project.title } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
+                    <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <div className='text-lg text-slate-300 flex items-center'>
                             { project.title }
                             <span className='ml-4'>
@@ -187,7 +186,7 @@ class DetailsFrame extends React.Component<Props, State> {
     render(): React.JSX.Element {
         return (
             <div className="ml-12">
-                <InView>
+                <InView key="about-me">
                     {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                         <div ref={ ref } id="about" className={`section mb-20 ${inView ? 'animate-fade-in' : ''}`}>
                             <div className='sticky top-0 backdrop-blur z-10 uppercase text-xl text-white mb-4'>
@@ -199,7 +198,7 @@ class DetailsFrame extends React.Component<Props, State> {
                     )}
                 </InView>
                 <div id="experience" className='section mb-20'>
-                    <InView>
+                    <InView key="experiences">
                         {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                             <div ref={ ref } className={`sticky top-0 backdrop-blur z-10 uppercase text-xl text-white mb-4 ${inView ? 'animate-fade-in' : ''}`}>
                                 Work Experience
@@ -213,7 +212,7 @@ class DetailsFrame extends React.Component<Props, State> {
                     </div>
                 </div>
                 <div id="background" className='section mb-20'>
-                    <InView>
+                    <InView key="background-skills-education">
                         {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                             <div ref={ ref } className={`sticky top-0 backdrop-blur z-10 uppercase text-xl text-white mb-4 ${inView ? 'animate-fade-in' : ''}`}>
                                 Skills & Education
@@ -227,7 +226,7 @@ class DetailsFrame extends React.Component<Props, State> {
                     </div>
                 </div>
                 <div id="personal" className='section mb-20'>
-                    <InView>
+                    <InView key="personal-projects-interests">
                         {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                             <div ref={ ref } className={`sticky top-0 backdrop-blur z-10 uppercase text-xl text-white mb-4 ${inView ? 'animate-fade-in' : ''}`}>
                                 Personal Projects & Interests

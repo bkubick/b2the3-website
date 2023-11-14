@@ -90,7 +90,7 @@ class CoverLetterGenerator extends React.Component<Props, State> {
 
     render() {
         return (
-            <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}} className={`text-white w-full`}>
+            <m.main initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}} exit={{ opacity: 0 }} className={`text-white w-full`}>
                 <div className='grid lg:grid-cols-12'>
                     <div className='col-span-5 lg:overflow-hidden flex'>
                         <div className='overflow-y-scroll no-scrollbar pr-5'>
@@ -114,7 +114,7 @@ class CoverLetterGenerator extends React.Component<Props, State> {
                         </div>
                     </div>
                 </div>
-            </m.div>
+            </m.main>
         );
       }
 };

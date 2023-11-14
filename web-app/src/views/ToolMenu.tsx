@@ -79,9 +79,9 @@ class ToolMenu extends React.Component<Props, State> {
 
     render() {
         return (
-            <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}} className={`my-12 w-full flex`}>
+            <m.main initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}} exit={{ opacity: 0 }} className={`my-12 w-full flex`}>
                 { this.toolCards.map((toolCard, index) => this.renderToolCard(toolCard, index)) }
-            </m.div>
+            </m.main>
         )
     }
 }
