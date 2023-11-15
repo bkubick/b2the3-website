@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
 
+import BreadCrumbs, { BreadCrumb, getBreadCrumbsFromPathname } from 'src/components/bread-crumbs';
 import Logo from 'src/static/img/b_to_the_3_logo.svg';
 
 
@@ -124,6 +125,9 @@ function Header(props: Props) {
                     { props.sections.map((section: Section) => {
                         return navItem(section);
                     })}
+                </div>
+                <div className='text-left flex pl-3 mb-auto mt-3'>
+                    <BreadCrumbs crumbs={ getBreadCrumbsFromPathname(location.pathname) } />
                 </div>
             </div>
         </div>
