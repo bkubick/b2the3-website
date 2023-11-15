@@ -1,6 +1,6 @@
 import { AnimatePresence } from 'framer-motion';
 import React from 'react';
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Outlet, Routes, Route, useLocation } from "react-router-dom";
 
 import ToolMenu from 'src/views/ToolMenu';
 import StartupIdeaGenerator from 'src/views/idea-generator/StartupIdeaGenerator';
@@ -15,9 +15,11 @@ function RoutesWithAnimation(): React.JSX.Element {
         <AnimatePresence initial={ false } mode='wait'>
             <Routes location={ location } key={ location.key }>
                 <Route path="/" element={<PersonalPortfolio />} />
-                <Route path="/tools" element={<ToolMenu />} />
-                <Route path="/tools/startup_idea_generator" element={<StartupIdeaGenerator />} />
-                <Route path="/tools/cover_letter_generator" element={<CoverLetterGenerator />} />
+                <Route path="/tools" element={<Outlet />}>
+                    <Route path="" element={<ToolMenu />} />
+                    <Route path="startup_idea_generator" element={<StartupIdeaGenerator />} />
+                    <Route path="cover_letter_generator" element={<CoverLetterGenerator />} />
+                </Route>
             </Routes>
         </AnimatePresence>
     );
