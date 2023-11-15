@@ -69,8 +69,8 @@ class DetailsFrame extends React.Component<Props, State> {
                         </div>
                         <ul className='list-disc pl-6 mb-4'>
                             {
-                                workExperience.details.map((detail: string) => {
-                                    return <li>{ detail }</li>
+                                workExperience.details.map((detail: string, index: number) => {
+                                    return <li key={`experience-detail-${index}`}>{ detail }</li>
                                 })
                             }
                         </ul>
@@ -105,8 +105,8 @@ class DetailsFrame extends React.Component<Props, State> {
                         </div>
                         <ul className='list-disc pl-6'>
                             {
-                                education.details.map((detail: string) => {
-                                    return <li>{ detail }</li>
+                                education.details.map((detail: string, index: number) => {
+                                    return <li key={`education-detail-${index}`}>{ detail }</li>
                                 })
                             }
                         </ul>
@@ -135,8 +135,8 @@ class DetailsFrame extends React.Component<Props, State> {
                         </div>
                         <ul className='list-disc pl-6 mb-4'>
                             {
-                                project.details.map((detail: string) => {
-                                    return <li>{ detail }</li>
+                                project.details.map((detail: string, index: number) => {
+                                    return <li key={ `project-detail-${index}` }>{ detail }</li>
                                 })
                             }
                         </ul>
