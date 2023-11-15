@@ -71,7 +71,6 @@ class CoverLetterGenerator extends React.Component<Props, State> {
      * This is used to hide/display the loading spinner.
      */
     setGenerating(generating: boolean) {
-        console.log('setGenerating')
         this.setState({
             generating: generating,
         });

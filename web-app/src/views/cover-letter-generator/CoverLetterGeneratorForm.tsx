@@ -68,13 +68,11 @@ class CoverLetterGeneratorForm extends React.Component<Props, State> {
      */
     async onSubmit(values: FormValues, actions: any): Promise<void> {
         this.props.generatingHandler(true);
-        console.log('VALUES: \n\n', values)
         const prompt = generatorCoverLetterPrompt(values.position,
                                                   values.company,
                                                   values.jobDescription,
                                                   values.experiences,
                                                   values.exampleCoverLetters || []);
-        console.log('PROMPT: \n\n', prompt);
         const model = new AI.ChatGPT(values.apiToken);
 
         let coverLetter: string = 'Coudn\'t generate cover letter.... Check your API token and please try again.';

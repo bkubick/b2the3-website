@@ -6,7 +6,6 @@ import CoverLetterGeneratorImg from 'src/static/img/pages/cover_letter_generator
 import StartupIdeaGeneratorImg from 'src/static/img/pages/startup_idea_generator.png';
 import { addCursorFollowerListener } from 'src/utils/followers';
 
-console.log(CoverLetterGeneratorImg);
 
 interface ToolCard {
     title: string,
