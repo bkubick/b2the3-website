@@ -72,8 +72,6 @@ function setTitle(title?: string, defaultTitle?: string): void {
         defaultTitle = 'B2the3';
     }
 
-    console.log('title', `${defaultTitle} | ${title}`)
-
     if (!title) {
         document.title = defaultTitle;
     } else {
