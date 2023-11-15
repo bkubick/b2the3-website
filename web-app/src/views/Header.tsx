@@ -22,6 +22,7 @@ interface Props extends WrappedProps{
 
 interface State {
     localActiveSection: Section;
+    startingSection: Section;
     startingActiveCircleXPosition: number;
     currentActiveCircleXPosition: number;
 }
@@ -36,6 +37,7 @@ class Header extends React.Component<Props, State> {
             startingActiveCircleXPosition: 0,
             currentActiveCircleXPosition: 0,
             localActiveSection: this.props.activeSection,
+            startingSection: this.props.activeSection,
         };
 
         this.props.sections.forEach((section: Section) => {
@@ -45,20 +47,24 @@ class Header extends React.Component<Props, State> {
 
     componentDidMount(): void {
         this.addResizeWindowListener();
+        
+        const startingActiveCircleXPosition: number = this.getNavbarSectionXPosition(this.props.activeSection);
 
-        const circleStartingXPos: number = this.getNavbarSectionXPosition(this.props.sections[0]);
-        const currentActiveCircleXPos: number = this.getNavbarSectionXPosition(this.props.activeSection);
         this.setState({
-            startingActiveCircleXPosition: circleStartingXPos,
-            currentActiveCircleXPosition: currentActiveCircleXPos,
+            startingSection: this.props.activeSection,
+            startingActiveCircleXPosition: startingActiveCircleXPosition,
+            currentActiveCircleXPosition: startingActiveCircleXPosition,
         });
     }
 
     addResizeWindowListener(): void {
+        const startingActiveCircleXPosition: number = this.getNavbarSectionXPosition(this.props.activeSection);
+
         window.addEventListener('resize', () => {
             this.setState({
-                startingActiveCircleXPosition: this.getNavbarSectionXPosition(this.props.sections[0]),
-                currentActiveCircleXPosition: this.getNavbarSectionXPosition(this.props.activeSection),
+                startingSection: this.props.activeSection,
+                startingActiveCircleXPosition: startingActiveCircleXPosition,
+                currentActiveCircleXPosition: startingActiveCircleXPosition,
             });
         });
     }
@@ -98,7 +104,7 @@ class Header extends React.Component<Props, State> {
                     { section.title }
                 </Link>
                 {
-                    section == this.props.sections[0] ? (
+                    section == this.state.startingSection ? (
                         <div id="active-nav-circle" className="leading-4" style={ activeCircleStyle }>
                             <span className={ circleClass }></span>
                         </div>
