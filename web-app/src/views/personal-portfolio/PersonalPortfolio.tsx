@@ -1,10 +1,10 @@
 import { motion as m } from 'framer-motion';
 import React from 'react';
 
-import { Education } from 'src/interface/education';
-import { Project } from 'src/interface/project';
-import { User } from 'src/interface/user';
-import { WorkExperience } from 'src/interface/work-experience';
+import { Education } from 'src/interface/portfolio/education';
+import { Project } from 'src/interface/portfolio/project';
+import { User } from 'src/interface/portfolio/user';
+import { WorkExperience } from 'src/interface/portfolio/work-experience';
 import { user, education, projects, workExperiences } from 'src/professional-info';
 import { setTitle } from 'src/utils/display';
 import DetailsFrame from './DetailsFrame';

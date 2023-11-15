@@ -1,9 +1,9 @@
-import { College } from 'src/interface/school';
-import { Education } from 'src/interface/education';
-import { Project } from 'src/interface/project';
-import { ProfessionalSkill, PersonalSkills, Technology } from './interface/skill';
-import { User } from 'src/interface/user';
-import { WorkExperience } from 'src/interface/work-experience';
+import { College } from 'src/interface/portfolio/school';
+import { Education } from 'src/interface/portfolio/education';
+import { Project } from 'src/interface/portfolio/project';
+import { ProfessionalSkill, PersonalSkills, Technology } from './interface/portfolio/skill';
+import { User } from 'src/interface/portfolio/user';
+import { WorkExperience } from 'src/interface/portfolio/work-experience';
 
 
 const columbia: College = {

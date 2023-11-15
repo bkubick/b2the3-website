@@ -1,5 +1,5 @@
-import Company from 'src/interface/company';
-import { ProfessionalSkill, Technology } from '../interface/skill';
+import Company from 'src/interface/portfolio/company';
+import { ProfessionalSkill, Technology } from './skill';
 
 
 interface WorkExperience {

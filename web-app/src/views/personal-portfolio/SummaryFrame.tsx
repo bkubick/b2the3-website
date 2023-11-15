@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { User } from 'src/interface/user';
-import Logo from 'src/static/img/b_to_the_3_logo.svg';
+import { User } from 'src/interface/portfolio/user';
 import Github from 'src/static/img/github.svg';
 import LinkedIn from 'src/static/img/linked-in.svg';
 import Envelope from 'src/static/img/envelope.svg';

@@ -1,6 +1,6 @@
-import { College } from 'src/interface/school';
+import { College } from 'src/interface/portfolio/school';
 import StartEndData from './StartEndDate';
-import { Technology } from '../interface/skill';
+import { Technology } from './skill';
 
 
 interface Course {

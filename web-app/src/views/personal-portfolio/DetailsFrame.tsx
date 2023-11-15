@@ -1,12 +1,12 @@
 import React from 'react';
 import { InView } from 'react-intersection-observer';
 
-import { Education } from 'src/interface/education';
-import { Project } from 'src/interface/project';
-import { ProfessionalSkill, Technology } from 'src/interface/skill';
-import { User } from 'src/interface/user';
-import { WorkExperience } from 'src/interface/work-experience';
-import StartEndData from 'src/interface/StartEndDate';
+import { Education } from 'src/interface/portfolio/education';
+import { Project } from 'src/interface/portfolio/project';
+import { ProfessionalSkill, Technology } from 'src/interface/portfolio/skill';
+import { User } from 'src/interface/portfolio/user';
+import { WorkExperience } from 'src/interface/portfolio/work-experience';
+import StartEndData from 'src/interface/portfolio/StartEndDate';
 import * as DisplayUtil from 'src/utils/display';
 import UpRight from 'src/static/img/up-right.svg';
 
