@@ -5,13 +5,14 @@ import { Link } from "react-router-dom";
 import CoverLetterGeneratorImg from 'src/static/img/pages/cover_letter_generator.png';
 import StartupIdeaGeneratorImg from 'src/static/img/pages/startup_idea_generator.png';
 import { addCursorFollowerListener } from 'src/utils/followers';
+import { preloadImages } from 'src/utils/loading';
 
 
 interface ToolCard {
     title: string,
     description: string,
     link: string,
-    image?: string,
+    image: string,
 }
 
 
@@ -57,6 +58,9 @@ class ToolMenu extends React.Component<Props, State> {
      */
     componentDidMount(): void {
         addCursorFollowerListener();
+
+        const images: string[] = this.toolCards.map((toolCard) => { if (toolCard.image) return toolCard.image; }) as string[];
+        preloadImages(images);
     }
 
     /**
@@ -64,7 +68,7 @@ class ToolMenu extends React.Component<Props, State> {
      * @param toolCard The tool card to render.
      * @param index The index of the tool card.
      */
-    renderToolCard(toolCard: ToolCard, index: number) {
+    renderToolCard(toolCard: ToolCard, index: number): React.JSX.Element {
         return (
             <div key={index} className='px-5 mb-8 w-full flex h-fit'>
                 <Link to={toolCard.link} className='card p-12 text-white w-full'>
@@ -76,7 +80,7 @@ class ToolMenu extends React.Component<Props, State> {
         )
     }
 
-    render() {
+    render(): React.JSX.Element {
         return (
             <m.main initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}} exit={{ opacity: 0 }} className={`my-12 w-full flex`}>
                 { this.toolCards.map((toolCard, index) => this.renderToolCard(toolCard, index)) }
