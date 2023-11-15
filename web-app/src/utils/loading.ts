@@ -13,8 +13,6 @@ function preloadImages(images: string[]): void {
         if (!picture) return;
         const img = new Image();
         img.src = picture;
-
-        window.document.body.appendChild(img);
     });
 }
 
