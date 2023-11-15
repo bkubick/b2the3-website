@@ -17,9 +17,9 @@ This app was deployed to Amazon Web Services (AWS) using AWS Amplify.
 <img style="padding-right:20px;" align=left alt="Webpack" src="https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black"/>
 <img style="padding-right:20px;" align=left alt="Tailwind" src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white"/>
 <img style="padding-right:20px;" align=left alt="ChatGPT" src="https://img.shields.io/badge/chatGPT-74aa9c?style=for-the-badge&logo=openai&logoColor=white"/>
-<img alt="AWS" style="padding-right:20px;" align=left src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white"/>
-<img alt="Framer" style="padding-right:20px" align=left src="https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue"/>
-<img alt="React Router" style="padding-right:20px" src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
+<img style="padding-right:20px;" align=left alt="AWS" src="https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white"/>
+<img style="padding-right:20px;" align=left alt="Framer" src="https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue"/>
+<img style="padding-right:20px;" alt="React Router" src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
 
 ## Creating
 This App was built using React.js, TypeScript, and Webpack. To setup the project, direct to the `web-app` directory and run the following commands.
