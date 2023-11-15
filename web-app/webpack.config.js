@@ -1,3 +1,4 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require("path");
@@ -12,6 +13,11 @@ const cssPlugin = new MiniCssExtractPlugin({
     filename: "./index.css",
 });
 
+const copyPlugin = new CopyWebpackPlugin({
+    patterns: [
+      { from: "public/static", to: "" },
+    ],
+  });
 
 module.exports = {
     entry: './src/index.tsx',
@@ -107,5 +113,5 @@ module.exports = {
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx']
     },
-    plugins: [htmlPlugin, cssPlugin]
+    plugins: [htmlPlugin, cssPlugin, copyPlugin]
 };
