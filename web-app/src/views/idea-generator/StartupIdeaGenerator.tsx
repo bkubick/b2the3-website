@@ -4,6 +4,7 @@ import React, { ReactElement } from 'react';
 import IdeaGeneratorForm from './IdeaGeneratorForm';
 import { Tab, TopNav } from 'src/components/navigation';
 import { Spinner } from 'src/components/loading';
+import { setTitle } from 'src/utils/display';
 
 
 interface Props {}
@@ -47,6 +48,10 @@ class StartupIdeaGenerator extends React.Component<Props, State> {
         this.setActiveTab = this.setActiveTab.bind(this);
         this.setGenerating = this.setGenerating.bind(this);
         this.setGeneratedStartupIdea = this.setGeneratedStartupIdea.bind(this);
+    }
+
+    componentDidMount() {
+        setTitle('Startup Idea Generator');
     }
 
     /**

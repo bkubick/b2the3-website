@@ -6,6 +6,7 @@ import { Project } from 'src/interface/project';
 import { User } from 'src/interface/user';
 import { WorkExperience } from 'src/interface/work-experience';
 import { user, education, projects, workExperiences } from 'src/professional-info';
+import { setTitle } from 'src/utils/display';
 import DetailsFrame from './DetailsFrame';
 import SummaryFrame from './SummaryFrame';
 
@@ -46,6 +47,7 @@ class PersonalPortfolio extends React.Component<Props, State> {
 
     componentDidMount(): void {
         this.addNavbarSectionScrollListener();
+        setTitle('Portfolio');
     }
 
     updateActiveSection(section: string): void {

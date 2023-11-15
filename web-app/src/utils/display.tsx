@@ -62,8 +62,29 @@ function createMarkup(value: string) {
 }
 
 
+/**
+ * Sets the title of the page.
+ * 
+ * @param title the title of the page.
+ */
+function setTitle(title?: string, defaultTitle?: string): void {
+    if (!defaultTitle) {
+        defaultTitle = 'B2the3';
+    }
+
+    console.log('title', `${defaultTitle} | ${title}`)
+
+    if (!title) {
+        document.title = defaultTitle;
+    } else {
+        document.title = `${defaultTitle} | ${title}`;
+    }
+}
+
+
 export {
     createMarkup,
     getMonthByNumber,
+    setTitle,
     splitLines,
 };

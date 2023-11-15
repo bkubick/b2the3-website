@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from "react-router-dom";
 
+import { setTitle } from 'src/utils/display';
 import { addCursorFollowerListener } from 'src/utils/followers';
 import RoutesWithAnimation from './RoutesWithAnimation';
 
@@ -35,6 +36,7 @@ class App extends React.Component<Props, State> {
      */
     componentDidMount(): void {
         addCursorFollowerListener();
+        setTitle('');
     }
 
     render() {
