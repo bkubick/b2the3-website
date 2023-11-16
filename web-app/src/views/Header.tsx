@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
 
 import BreadCrumbs, { getBreadCrumbsFromPathname } from 'src/components/bread-crumbs';
-import Logo from 'src/static/img/b_to_the_3_logo.svg';
+import Logo from 'src/static/img/logos/b_to_the_3_logo.svg';
 
 
 interface Section {

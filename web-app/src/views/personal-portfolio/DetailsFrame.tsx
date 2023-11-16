@@ -9,7 +9,7 @@ import { User } from 'src/interface/portfolio/user';
 import { WorkExperience } from 'src/interface/portfolio/work-experience';
 import StartEndData from 'src/interface/portfolio/StartEndDate';
 import * as DisplayUtil from 'src/utils/display';
-import UpRight from 'src/static/img/up-right.svg';
+import UpRight from 'src/static/img/icons/up-right.svg';
 
 
 interface Props {

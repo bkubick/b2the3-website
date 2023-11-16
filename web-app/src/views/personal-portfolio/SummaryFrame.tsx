@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { User } from 'src/interface/portfolio/user';
-import Github from 'src/static/img/github.svg';
-import LinkedIn from 'src/static/img/linked-in.svg';
-import Envelope from 'src/static/img/envelope.svg';
+import Github from 'src/static/img/icons/github.svg';
+import LinkedIn from 'src/static/img/icons/linked-in.svg';
+import Envelope from 'src/static/img/icons/envelope.svg';
 
 
 interface Props {
