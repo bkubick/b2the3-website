@@ -28,8 +28,6 @@ interface State {
 
 
 class DetailsFrame extends React.Component<Props, State> {
-    keyValue: number = 0;
-
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -52,7 +50,6 @@ class DetailsFrame extends React.Component<Props, State> {
     }
 
     workExperienceCard(workExperience: WorkExperience): React.JSX.Element {
-        this.keyValue += 1;
         return (
             <InView key={ workExperience.company.name + workExperience.jobTitle }>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
@@ -113,7 +110,6 @@ class DetailsFrame extends React.Component<Props, State> {
     }
 
     projectCard(project: Project): React.JSX.Element {
-        this.keyValue += 1;
         return (
             <InView key={ project.title }>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
