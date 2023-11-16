@@ -1,6 +1,7 @@
 import React from 'react';
 import { InView } from 'react-intersection-observer';
 
+import Pill from 'src/components/pill';
 import { Education } from 'src/interface/portfolio/education';
 import { Project } from 'src/interface/portfolio/project';
 import { ProfessionalSkill, Technology } from 'src/interface/portfolio/skill';
@@ -38,11 +39,6 @@ class DetailsFrame extends React.Component<Props, State> {
         }
     }
 
-    getPill(value: string): React.JSX.Element {
-        this.keyValue += 1;
-        return <span key={`pill-${this.keyValue}`} className="pill mx-1 mb-1 text-primary border-primary">{ value }</span>
-    }
-
     getDateDisplay(startEndData: StartEndData): string {
         const startMonthName = DisplayUtil.getMonthByNumber(startEndData.startMonth, true);
         var dateDisplay: string = `${startMonthName} ${startEndData.startYear}`;
@@ -76,13 +72,13 @@ class DetailsFrame extends React.Component<Props, State> {
                         </ul>
                         <div className='mb-2 flex flex-wrap'>
                             {
-                                workExperience.technologies.map((technology: Technology) => {
-                                    return  this.getPill(technology)
+                                workExperience.technologies.map((technology: Technology, index: number) => {
+                                    return  <Pill key={ `work-experience-technology-${index}` } text={ technology } />
                                 })
                             }
                             {
-                                workExperience.professionalSkills.map((skill: ProfessionalSkill) => {
-                                    return  this.getPill(skill)
+                                workExperience.professionalSkills.map((skill: ProfessionalSkill, index: number) => {
+                                    return <Pill key={ `work-experience-professional-skill-${index}` } text={ skill } />
                                 })
                             }
                         </div>
@@ -142,8 +138,8 @@ class DetailsFrame extends React.Component<Props, State> {
                         </ul>
                         <div className='mb-2 flex flex-wrap'>
                             {
-                                project.technologies.map((technology: Technology) => {
-                                    return  this.getPill(technology)
+                                project.technologies.map((technology: Technology, index: number) => {
+                                    return <Pill key={ `project-technology-${index}` } text={ technology } />
                                 })
                             }
                         </div>
