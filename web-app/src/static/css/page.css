@@ -1,0 +1,18 @@
+:root {
+    --header-size: 104px;
+}
+
+body {
+    @apply bg-secondary cursor-default
+}
+
+@media only screen and (min-width: 768px) {
+    #root {
+        background: transparent radial-gradient(40% 40% at calc(var(--mouse-x, 0) * 100%) calc(var(--mouse-y, 0) * 100%), rgba(0, 209, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 100%) no-repeat 0 0
+    }   
+}
+
+.container-height {
+    @apply h-[calc(100vh-var(--header-size))];
+}
+  

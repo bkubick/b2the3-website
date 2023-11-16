@@ -2,61 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "src/static/css/components.css";
 @import "src/static/css/fields.css";
-
-
-:root {
-  --header-size: 104px;
-}
-
-body {
-  @apply bg-secondary cursor-default
-}
-
-@media only screen and (min-width: 768px) {
-  #root {
-      background: transparent radial-gradient(40% 40% at calc(var(--mouse-x, 0) * 100%) calc(var(--mouse-y, 0) * 100%), rgba(0, 209, 255, 0.10) 0%, rgba(255, 255, 255, 0.00) 100%) no-repeat 0 0
-  }   
-}
-
-.container-height {
-  @apply h-[calc(100vh-var(--header-size))];
-}
-
-.btn {
-  @apply font-bold py-1 px-2 rounded-md;
-}
-
-.btn-sm {
-  @apply text-sm py-0 font-normal px-2 rounded-md;
-}
-
-.btn-primary-outline {
-  @apply text-primary border-2 border-primary transition ease-in-out duration-150 inline-block;
-}
-
-.btn-primary-outline:hover {
-  @apply -translate-y-1 shadow-md shadow-primary;
-}
-
-.card {
-  @apply rounded;
-}
-
-.card:hover {
-  @apply shadow-lg shadow-primary;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-.no-scrollbar {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
-}
-
-.logo {
-  min-width: 30px;
-  width: 30px;
-}
+@import "src/static/css/page.css";

@@ -1,0 +1,38 @@
+.btn {
+    @apply font-bold py-1 px-2 rounded-md;
+}
+
+.btn-sm {
+    @apply text-sm py-0 font-normal px-2 rounded-md;
+}
+
+.btn-primary-outline {
+    @apply text-primary border-2 border-primary transition ease-in-out duration-150 inline-block;
+}
+
+.btn-primary-outline:hover {
+    @apply -translate-y-1 shadow-md shadow-primary;
+}
+
+.card {
+    @apply rounded;
+}
+
+.card:hover {
+    @apply shadow-lg shadow-primary;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    @apply hidden;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.logo {
+    min-width: 30px;
+    width: 30px;
+}
+  
