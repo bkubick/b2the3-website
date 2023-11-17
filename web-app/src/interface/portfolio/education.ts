@@ -17,6 +17,7 @@ interface Education extends StartEndData{
     honors: string[];
     clubs: string[];
     courses: Course[];
+    icon?: string;
 }
 
 export type { Education };

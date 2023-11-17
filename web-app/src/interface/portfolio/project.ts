@@ -10,6 +10,7 @@ interface Project extends StartEndData {
     technologies: Technology[];
     link?: string;
     associatedWith?: College | Company;
+    image?: string;
 }
 
 
