@@ -24,7 +24,7 @@ class SummaryFrame extends React.Component<Props, State> {
     render() {
         const socialMediaIconClassName: string = 'hover:scale-125 transition ease-in-out duration-300';
         return (
-            <div className={ `py-10 mr-12 flex flex-col justify-between ${ this.props.classNames }`}>
+            <div className={ `py-10 ml-4 mr-12 flex flex-col justify-between ${ this.props.classNames }`}>
                 <div className='mb-4'>
                     <div>
                         <div className='uppercase text-white mb-2 text-4xl'>

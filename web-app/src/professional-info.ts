@@ -5,6 +5,14 @@ import { ProfessionalSkill, PersonalSkills, Technology } from './interface/portf
 import { User } from 'src/interface/portfolio/user';
 import { WorkExperience } from 'src/interface/portfolio/work-experience';
 
+import B2The3PortfoliioLogo from 'src/static/img/icons/b2the3_portfolio_logo.png';
+import CatalantTechnologiesLogo from 'src/static/img/icons/catalant_technologies_logo.png';
+import ColumbiaLogo from 'src/static/img/icons/columbia_logo.png';
+import PSIEnginesLogo from 'src/static/img/icons/psi_logo.png';
+import RedlandsLogo from 'src/static/img/icons/redlands_logo.png';
+import SB3Logo from 'src/static/img/icons/sb3_logo.png';
+import TurbineAeroLogo from 'src/static/img/icons/turbineaero_logo.png';
+
 
 const columbia: College = {
     name: 'Columbia University'
@@ -59,6 +67,7 @@ const workExperiences: WorkExperience[] = [
     {
         company: {
             name: 'Catalant Technologies',
+            img: CatalantTechnologiesLogo,
         },
         jobTitle: 'Software Engineer II',
         description: '',
@@ -89,6 +98,7 @@ const workExperiences: WorkExperience[] = [
     {
         company: {
             name: 'Catalant Technologies',
+            img: CatalantTechnologiesLogo,
         },
         jobTitle: 'Software Engineer I',
         description: '',
@@ -118,6 +128,7 @@ const workExperiences: WorkExperience[] = [
     {
         company: {
             name: 'TurbineAero Engine Technics',
+            img: TurbineAeroLogo,
         },
         jobTitle: 'R&D Engineer',
         description: '',
@@ -144,6 +155,7 @@ const workExperiences: WorkExperience[] = [
     {
         company: {
             name: 'TurbineAero Repair',
+            img: TurbineAeroLogo,
         },
         jobTitle: 'MRO Engineer',
         description: '',
@@ -166,25 +178,8 @@ const workExperiences: WorkExperience[] = [
     },
     {
         company: {
-            name: 'Gage Mathers',
-        },
-        jobTitle: 'Part Time Legal Assistant & Software Consultant',
-        description: '',
-        details: [
-            'Conceptualized and executed a custom application leveraging Python and Tkinter to streamline the intakes and demand package creation process.',
-            'Conducted data ingestion by collecting and cleaning intake data from clients, ensuring its accuracy and completeness.',
-            'Tracked and analyzed case valuations on a quarterly basis.'
-        ],
-        startMonth: 1,
-        startYear: 2020,
-        endMonth: 7,
-        endYear: 2021,
-        technologies: [Technology.PYTHON, Technology.TKINTER],
-        professionalSkills: [ProfessionalSkill.DATA_ANALYSIS]
-    },
-    {
-        company: {
-            name: 'Power Solutions International',
+            name: 'PSI Engines',
+            img: PSIEnginesLogo,
         },
         jobTitle: 'Business & Engineering Intern',
         description: '',
@@ -220,92 +215,27 @@ const projects: Project[] = [
         ],
         startMonth: 9,
         startYear: 2022,
+        image: SB3Logo,
     },
     {
-        title: 'Traveling Salesman Genetic Algorithm',
+        title: 'Personal Portfolio Website',
         details: [
-            'Developed multiple genetic algorithms using various programming languages to solve the Traveling Salesman Problem.',
-            'Analyzed and compared each test to three baseline models: random and hill climber.'
+            'Built a personal portfolio website to showcase my professional experience and projects.',
+            'Implemented a Vue3 and TypeScript frontend, and a Flask backend api.',
+            'Utilized Docker for containerization, and deployed the website on AWS.'
         ],
         technologies: [
-            Technology.CPP,
+            Technology.VUE,
             Technology.PYTHON,
-            Technology.MATPLOTLIB,
-            Technology.NUMPY,
-            Technology.GENETIC_ALGORITHM,
+            Technology.TYPESCRIPT,
+            Technology.FLASK,
+            Technology.DOCKER,
+            Technology.GIT
         ],
-        startMonth: 6,
+        startMonth: 7,
         startYear: 2023,
-        endMonth: 6,
-        endYear: 2023,
-    },
-    {
-        title: 'Real Estate Value Prediction & Data Pipeline',
-        details: [
-            `Developed a data pipeline and machine learning algorithm that values real estate property based on
-             housing and economic data.`,
-            `Scraped various real estate websites, and utilized multiple economic API's, to acquire data used for
-             the machine learning training and testing data.`
-        ],
-        technologies: [
-            Technology.PYTHON,
-            Technology.SQL,
-            Technology.MATPLOTLIB,
-            Technology.SKLEARN,
-            Technology.PANDAS,
-            Technology.MACHINE_LEARNING,
-        ],
-        startMonth: 2,
-        startYear: 2019,
-        endMonth: 5,
-        endYear: 2019,
-        associatedWith: columbia,
-    },
-    {
-        title: 'Automatic Spice Dispenser',
-        details: [
-            'With a team of four other students, designed and manufactured an automated spice dispenser, that took first place at the Columbia University Mechanical Engineering Senior Design Expo.',
-            'Conducted lean methodology to identify target market through market analyses and interviewing over 120 potential customers, retail stores, and restaurants, to influence the design and functionality of the device.',
-            'Designed entire mechanism using SolidWorks, utilizing stress analysis simulations and gear design simulations to completely model the device.',
-            'Manufactured each piece using in-house 3D printers and laser cutters, and outsourced sintered pieces.',
-            'Programmed the dispensing control using a Raspberry Pi and Python.',
-            'Implemented computer vision with QR codes to input and track each spice loaded into the device.',
-            'Utilized an array of photo-resistors, along with deterministic calculations to track amount of spice in each spice container.',
-            'Implemented a complete user interface with a touch-screen controller using Python and Tkinter for easy operation and control for the user.',
-        ],
-        technologies: [
-            Technology.PYTHON,
-            Technology.TKINTER,
-            Technology.NUMPY,
-            Technology.SOLIDWORKS,
-        ],
-        startMonth: 11,
-        startYear: 2018,
-        endMonth: 5,
-        endYear: 2019,
-        associatedWith: columbia,
-        link: 'https://prespiceteam.wixsite.com/website-1',
-    },
-    {
-        title: 'Mobile & Robotic Arm Programming',
-        details: [
-            `Programmed various algorithms using Python and controlled using ROS (Robotic Operating System) for a
-             simulated Baxter robot such as forward and inverse kinematics, cartesian control with numerical methods,
-             and motion planning.`,
-            `Programmed the Extended Kalman Filter state estimation using Python and controlled using ROS for a
-             simulated mobile robot.`
-        ],
-        technologies: [
-            Technology.PYTHON,
-            Technology.NUMPY,
-            Technology.ROS,
-        ],
-        startMonth: 9,
-        startYear: 2018,
-        endMonth: 12,
-        endYear: 2018,
-        associatedWith: columbia,
-    },
+        image: B2The3PortfoliioLogo,
+    }
 ];
 
 
@@ -326,6 +256,7 @@ const education: Education[] = [
         honors: [],
         clubs: [],
         courses: [],
+        icon: ColumbiaLogo,
     },
     {
         school: {
@@ -345,6 +276,7 @@ const education: Education[] = [
         honors: [],
         clubs: [],
         courses: [],
+        icon: RedlandsLogo,
     }
 ];
 
