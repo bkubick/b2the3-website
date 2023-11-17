@@ -81,7 +81,8 @@ function generatorCoverLetterPrompt(position: string,
                                     company: string,
                                     jobDescription: string,
                                     personalExperiences: string,
-                                    coverLetterExamples?: string[]): string {
+                                    coverLetterExamples?: string[],
+                                    companyDetails?: string): string {
     let prompt: string = `
         Please write a cover letter between 350 and 450 words for the following
         job posting for the position of ${position || '\"\"'} at ${company || '\"\"'}:
@@ -96,6 +97,13 @@ function generatorCoverLetterPrompt(position: string,
         My Experiences:
         "${personalExperiences}"\n
     `;
+
+    if (companyDetails) {
+        prompt += `
+            Please take into account the following details about the company to help
+            tailor the cover letter more to the company: ${companyDetails}.
+        `;
+    }
 
     if (coverLetterExamples && coverLetterExamples.length > 0) {
         prompt += `

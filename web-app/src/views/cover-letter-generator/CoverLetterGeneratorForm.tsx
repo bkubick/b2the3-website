@@ -17,6 +17,7 @@ interface FormValues {
     experiences: string;
     jobDescription: string;
     exampleCoverLetters: string[];
+    companyDetails?: string;
 }
 
 
@@ -45,6 +46,7 @@ class CoverLetterGeneratorForm extends React.Component<Props, State> {
         experiences: '',
         jobDescription: '',
         exampleCoverLetters: [''],
+        companyDetails: '',
     }
 
     FORM_VALIDATION_SCHEMA = Yup.object().shape({
@@ -72,7 +74,8 @@ class CoverLetterGeneratorForm extends React.Component<Props, State> {
                                                   values.company,
                                                   values.jobDescription,
                                                   values.experiences,
-                                                  values.exampleCoverLetters || []);
+                                                  values.exampleCoverLetters || [],
+                                                  values.companyDetails || '');
         const model = new AI.ChatGPT(values.apiToken);
 
         let coverLetter: string = 'Coudn\'t generate cover letter.... Check your API token and please try again.';
@@ -126,6 +129,10 @@ class CoverLetterGeneratorForm extends React.Component<Props, State> {
                         <div className='mb-4'>
                             <Field name="jobDescription" placeholder="Job Description" className="textarea-input w-full" component={ TextareaField } validate={ Required }/>
                             <ErrorMessage name="jobDescription"/>
+                        </div>
+                        <div className='mb-4'>
+                            <Field name="companyDetails" placeholder="Company Details (Optional)" className="textarea-input w-full" component={ TextareaField }/>
+                            <ErrorMessage name="companyDetails"/>
                         </div>
                     </div>
                     <div className='mb-4'>
