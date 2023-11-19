@@ -160,12 +160,16 @@ class CoverLetterGeneratorForm extends React.Component<Props, State> {
                                             </div>
                                         </div>
                                         <div className='flex ml-4'>
-                                            <button type="button" className='mr-4 text-2xl' onClick={() => props.push('')}>
-                                                +
-                                            </button>
-                                            <button type="button" className='text-2xl' onClick={() => {props.remove(props.form.values.exampleCoverLetters.length - 1)}}>
-                                                -
-                                            </button>
+                                            <div className='m-auto'>
+                                                <button type="button" className='mr-4 hover:scale-150 transition ease-in-out duration-300' onClick={() => props.push('')}>
+                                                    +
+                                                </button>    
+                                            </div>
+                                            <div className='m-auto'>
+                                                <button type="button" className='text-2xl hover:scale-150 transition ease-in-out duration-300' onClick={() => {props.remove(props.form.values.exampleCoverLetters.length - 1)}}>
+                                                    -
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                     {props.form.values.exampleCoverLetters.map((_: any, index: number) => (
