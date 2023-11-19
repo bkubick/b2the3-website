@@ -23,10 +23,13 @@ const user: User = {
     summaryDetails: {
         firstName: 'Brandon',
         lastName: 'Kubick',
-        tagline: 'Full-Stack Developer | Mechanical Engineer',
-        summary: `I am a highly motivated individual seeking a mid-level position in Software Engineering.
-                  I am driven by a continuous desire to learn and grow, and am eager to apply my diverse
-                  skill set to new challenges.`,
+        tagline: 'Full-Stack Developer | Aerospace Engineer',
+        summary: `
+            Hello, I'm Brandon, an expert with 2+ years of full-stack engineering
+            experience and 2+ years of aviation aerospace engineering experience. I am
+            passionate about solving complex problems and building scalable software
+            solutions.
+        `,
     },
     contactInfo: {
         email: 'brandonkubick@gmail.com',

@@ -57,15 +57,15 @@ class DetailsFrame extends React.Component<Props, State> {
                         <div className='flex mb-2'>
                             <img className='h-12 mr-4 rounded' src={ workExperience.company.img } alt={ workExperience.company.img }/>
                             <div>
-                                <div className='text-lg text-slate-300'>
+                                <div className='text-lg text-white'>
                                     { workExperience.company.name } - { workExperience.jobTitle }
                                 </div>
-                                <div className='uppercase text-sm text-slate-300'>
+                                <div className='uppercase text-xs text-slate-300'>
                                     { this.getDateDisplay(workExperience) }
                                 </div>
                             </div>
                         </div>
-                        <ul className='list-disc pl-6 mb-4'>
+                        <ul className='list-disc pl-6 mb-4 text-sm'>
                             {
                                 workExperience.details.map((detail: string, index: number) => {
                                     return <li key={`experience-detail-${index}`}>{ detail }</li>
@@ -98,10 +98,10 @@ class DetailsFrame extends React.Component<Props, State> {
                         <div className="flex">
                             <img className='h-12 mr-4 rounded' src={ education.icon } alt={ education.school.name }/>
                             <div>
-                                <div className='text-lg text-slate-300'>
+                                <div className='text-lg text-white'>
                                     { education.school.name } - { education.degree }
                                 </div>
-                                <div className='uppercase text-sm text-slate-300'>
+                                <div className='uppercase text-xs text-slate-300'>
                                     { this.getDateDisplay(education) }  (GPA: { education.gpa.toFixed(2) })
                                 </div>
                             </div>
@@ -120,7 +120,7 @@ class DetailsFrame extends React.Component<Props, State> {
                         <div className="flex mb-2">
                             <img className='h-12 mr-4 rounded' src={ project.image } alt={ project.title }/>
                             <div>
-                                <div className='text-lg text-slate-300 flex items-center'>
+                                <div className='text-lg text-whiteflex items-center'>
                                     { project.title }
                                     <span className='ml-4'>
                                         {
@@ -128,12 +128,12 @@ class DetailsFrame extends React.Component<Props, State> {
                                         }
                                     </span>
                                 </div>
-                                <div className='uppercase text-sm text-slate-300'>
+                                <div className='uppercase text-xs text-slate-300'>
                                     { this.getDateDisplay(project) }
                                 </div>
                             </div>
                         </div>
-                        <ul className='list-disc pl-6 mb-4'>
+                        <ul className='list-disc pl-6 mb-4 text-sm'>
                             {
                                 project.details.map((detail: string, index: number) => {
                                     return <li key={ `project-detail-${index}` }>{ detail }</li>

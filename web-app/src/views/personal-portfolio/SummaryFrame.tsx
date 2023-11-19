@@ -55,8 +55,8 @@ class SummaryFrame extends React.Component<Props, State> {
                             <LinkedIn className={socialMediaIconClassName}/>
                         </a>
                     </div>
-                    <div className='text-slate-400 mb-4'>
-                        This was created by Branding Kubick, built using React, TypeScript, and TailWind.
+                    <div className='text-slate-400 mb-4 text-xs'>
+                        This was created by Branding Kubick, built using React, TypeScript, and Tailwind.
                         I want to point out that I am not a designer! This portfolio
                         is meant to showcase my experience through actual development!
                     </div>
