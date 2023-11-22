@@ -22,6 +22,7 @@ class App extends React.Component<Props, State> {
 
     sections: Section[] = [
         {title: 'home', route: '/'},
+        {title: 'health', route: '/health'},
         {title: 'tools', route: '/tools'},
     ];
 
