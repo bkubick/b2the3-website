@@ -40,7 +40,7 @@ class App extends React.Component<Props, State> {
 
     render() {
         return (
-            <div id='app' className='container mx-auto h-screen w-full'>
+            <div id='app' className='container mx-auto h-screen w-full overflow-scroll no-scrollbar'>
                 <BrowserRouter>
                     <Header sections={ this.sections } />
                     <div className='mx-auto flex container-height'>
