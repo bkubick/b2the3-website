@@ -24,7 +24,10 @@ module.exports = {
           '0%': { opacity: 1 },
           '100%': { opacity: 0 }
         }
-      }
+      },
+      borderWidth: {
+        '1': '1px',
+      },
     },
   },
   plugins: [],
