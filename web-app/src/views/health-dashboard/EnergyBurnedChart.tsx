@@ -2,6 +2,7 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import { EnergyBurned } from 'src/interface/health/energy';
+import { dateDiffInMilliseconds, millisecondsToMinutes } from 'src/utils/datetime';
 
 
 /**
@@ -36,14 +37,41 @@ interface ChartData {
  */
 const setupData = (data: EnergyBurned[]): ChartData[] => {
     const chartData: ChartData[] = [];
+
+    let name: string = '';
+    let totalcaloriesBurned: number = 0;
+    let totalElapsedTime: number = 0;
     data.forEach((item: EnergyBurned) => {
-        const dataItem: ChartData = {
-            name: item.startDatetime,
-            caloriesBurned: item.value,
-            elapsedTime: 5, // TODO: calculate elapsed time dynamically from startDatetime and endDatetime
-        };
-        chartData.push(dataItem);
+        const elapsedTime: number = dateDiffInMilliseconds(item.startDatetime, item.endDatetime);
+
+        if (millisecondsToMinutes(totalElapsedTime) >= 60) {
+            const dataItem: ChartData = {
+                name: name,
+                caloriesBurned: totalcaloriesBurned,
+                elapsedTime: millisecondsToMinutes(totalElapsedTime),
+            };
+
+            chartData.push(dataItem);
+
+            totalcaloriesBurned = 0;
+            totalElapsedTime = 0;
+        } else {
+            name = item.startDatetime;
+            totalcaloriesBurned += typeof item.value === 'string' ? parseInt(item.value, 10) : item.value;
+            totalElapsedTime += elapsedTime;
+        }
     });
+
+    if (totalElapsedTime > 0) {
+        const dataItem: ChartData = {
+            name: name,
+            caloriesBurned: totalcaloriesBurned,
+            elapsedTime: millisecondsToMinutes(totalElapsedTime),
+        };
+
+        chartData.push(dataItem);
+    }
+
     return chartData;
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 import { type Stand } from 'src/interface/health/stand';
+import { dateDiffInMinutes } from 'src/utils/datetime';
 
 
 /**
@@ -28,26 +29,54 @@ interface AreaChartData {
 }
 
 
-function StandChart(props: Props): React.JSX.Element {
+/**
+ * Convert stand data to chart data.
+ * 
+ * @param standData the stand data to be converted to chart data.
+ * @returns the chart data.
+ */
+const setupData = (standData: Stand[]): AreaChartData[] => {
+    const data: AreaChartData[] = [];
 
-    /**
-     * Convert stand data to chart data.
-     * 
-     * @param standData the stand data to be converted to chart data.
-     * @returns the chart data.
-     */
-    const setupData = (standData: Stand[]): AreaChartData[] => {
-        const data: AreaChartData[] = [];
-        standData.forEach((stand: Stand) => {
+    let name: string = '';
+    let totalStandTime: number = 0;
+    let totalElapsedTime: number = 0;
+    standData.forEach((stand: Stand) => {
+        const elapsedTime: number = dateDiffInMinutes(stand.startDatetime, stand.endDatetime);
+
+        if (totalElapsedTime == 60) {
             const dataItem: AreaChartData = {
-                name: stand.startDatetime,
-                standTime: stand.value,
-                elapsedTime: 5, // TODO: calculate elapsed time dynamically from startDatetime and endDatetime
+                name: name,
+                standTime: totalStandTime,
+                elapsedTime: totalElapsedTime,
             };
+
             data.push(dataItem);
-        });
-        return data;
-    };
+
+            totalStandTime = 0;
+            totalElapsedTime = 0;
+        } else {
+            name = stand.startDatetime;
+            totalStandTime += typeof stand.value === 'string' ? parseInt(stand.value, 10) : stand.value;
+            totalElapsedTime += elapsedTime;
+        }
+    });
+
+    if (totalElapsedTime > 0) {
+        const dataItem: AreaChartData = {
+            name: name,
+            standTime: totalStandTime,
+            elapsedTime: totalElapsedTime,
+        };
+
+        data.push(dataItem);
+    }
+
+    return data;
+};
+
+
+function StandChart(props: Props): React.JSX.Element {
 
     return (
         <ResponsiveContainer height={ 400 } width={ '100%' }>
