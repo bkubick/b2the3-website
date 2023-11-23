@@ -50,7 +50,7 @@ function StandChart(props: Props): React.JSX.Element {
     };
 
     return (
-        <ResponsiveContainer height={ 400 } width={ '50%' }>
+        <ResponsiveContainer height={ 400 } width={ '100%' }>
             <AreaChart data={ setupData(props.standData) } margin={{ top: 10, right: 30, left: 0, bottom: 30 }}>
                 <defs>
                     <linearGradient id="colorElapsedTime" x1="0" y1="0" x2="0" y2="1">
