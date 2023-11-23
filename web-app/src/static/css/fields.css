@@ -43,3 +43,7 @@
 .react-select-container .react-select__input-container {
     @apply text-white;
 }
+
+input[type="file"] {
+    display: none;
+}
