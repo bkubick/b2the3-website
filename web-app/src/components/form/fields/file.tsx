@@ -30,21 +30,29 @@ interface FileUploadFieldArgs {
     label?: string;
     className?: string;
     validate?: (value: string | undefined) => string | undefined;
+    onFileUpload?: (value: File) => void;
 }
 
 
 const FileUploadField = ({ field, ...props }: FileUploadFieldArgs) => {
     const onChangeHandler = (event: React.ChangeEvent<any>) => {
+        if (props.onFileUpload) {
+            props.onFileUpload(event.currentTarget.files[0]);
+        }
+
         props.form.setFieldValue(field.name, event.currentTarget.files[0]);
     };
 
-    const className = 'w-full rounded-lg px-2 py-1 bg-transparent text-white font-mono text-xs border-gray-400 cursor-pointer border-2 text-center' + (props.className ? props.className : '');
+    const className = 'w-28 rounded px-2 py-1 bg-transparent text-white font-mono text-xs border-gray-400 cursor-pointer border-2 text-center' + (props.className ? props.className : '');
 
     return (
-        <label className={ className }>
-            { props.label || 'Choose a file' }
-            <input type="file" className={ className } name={ field.name } onChange={ onChangeHandler }/>
-        </label>
+        <div className="border-gray-400 border-1 rounded-lg p-2 border-dashed flex">
+            <label className={ className }>
+                { props.label || 'Choose a file' }
+                <input type="file" className={ className } name={ field.name } onChange={ onChangeHandler }/>
+            </label>
+            { <div className="text-gray-400 text-sm pl-2 flex items-center truncate text-ellipsis">{ field.value ? field.value.name : 'No File Uploaded' }</div> }
+        </div>
     );
 }
 
