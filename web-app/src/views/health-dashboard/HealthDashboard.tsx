@@ -42,7 +42,15 @@ function HealthDashboard(): React.JSX.Element {
 
     return (
         <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}} exit={{ opacity: 0 }} className={`text-white w-full`}>
-            <div className='grid grid-cols-8 mb-4'>
+            <div className='mb-16'>
+                <h1 className='text-4xl font-bold mb-2'>Health Dashboard</h1>
+                <p className='mt-3 text-slate-300 text-sm'>
+                    This page is a dashboard for your health data. You can upload your health data to this page and view your health data in
+                    charts. You can also download your health data from the Health app on your iPhone and upload your health data to this page.
+                    The Simple Health Export CSV app on the iPhone allows you to export your health data as a CSV file. This page only supports CSV files.
+                </p>
+            </div>
+            <div className='grid grid-cols-8 mb-8'>
                 <div className='col-span-3'>
                     <h1 className='text-2xl font-bold mb-2'>Stand Data</h1>
                     <FileUploadForm<Stand> onSubmitHandler={ setStandData } fieldHeaderMapping={ StandDataMapping } idPrefix='stand-data' headerRowIndex={ 1 }/>
@@ -61,7 +69,7 @@ function HealthDashboard(): React.JSX.Element {
                     <StandChart standData={ standData } />
                 </div>
             </div>
-            <div className='grid grid-cols-8 mb-4'>
+            <div className='grid grid-cols-8 mb-8'>
                 <div className='col-span-5'>
                     <EnergyBurnedChart data={ energyData } />
                 </div>
