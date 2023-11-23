@@ -1,9 +1,7 @@
 import { ErrorMessage, Formik, Form, Field } from 'formik';
-import React, { ReactElement } from 'react';
+import React from 'react';
 
 import { FileUploadField } from 'src/components/form/fields';
-import { Required } from 'src/components/form/validation';
-import { type Stand } from 'src/interface/health/stand';
 import { parseCSV } from 'src/utils/files';
 
 
@@ -12,21 +10,15 @@ interface FormValues {
 }
 
 
-const StandDataMapping: Record<string, keyof Stand> = {
-    id: 'id',
-    startDate: 'startDatetime',
-    endDate: 'endDatetime',
-    unit: 'unit',
-    value: 'value',
-};
-
-
-interface Props {
-    onSubmitHandler: (data: Stand[]) => void;
+interface Props<T> {
+    fieldHeaderMapping: Record<string, keyof T>;
+    headerRowIndex: number;
+    idPrefix: string;
+    onSubmitHandler: (data: T[]) => void;
 }
 
 
-function FileUploadForm(props: Props): React.JSX.Element {
+function FileUploadForm<T>(props: Props<T>): React.JSX.Element {
 
     const INITIAL_FORM_VALUES: FormValues = {
         file: null,
@@ -40,28 +32,25 @@ function FileUploadForm(props: Props): React.JSX.Element {
      * @param values   The form values.
      * @param actions   The form actions.
      */
-    const onSubmit = async (values: FormValues, actions: any): Promise<void> => {
-        const file = values.file;
+    const onFileUpload = async (values: File): Promise<void> => {
+        console.log('onFileUpload: ', values);
+        const file = values;
         if (file) {
             fileReader.onload = function (event) {
                 const csvOutput: string = event.target?.result as string;
-                const parsedCSV = parseCSV<Stand>(csvOutput, StandDataMapping, 1, (i: number) => `stand-data-${i}`);
+                const parsedCSV = parseCSV<T>(csvOutput, props.fieldHeaderMapping, props.headerRowIndex, (i: number) => `${props.idPrefix}-${i}`);
                 props.onSubmitHandler(parsedCSV);
-                console.log(parsedCSV);
             };
 
             fileReader.readAsText(file);
         }
     }
 
-
     return (
-        <Formik initialValues={ INITIAL_FORM_VALUES } onSubmit={ onSubmit }>
+        <Formik initialValues={ INITIAL_FORM_VALUES } onSubmit={ () => {} }>
             <Form className='w-full'>
-                <Field name="file" label="Upload CSV" component={ FileUploadField } validate={ Required }/>
+                <Field name="file" label="Upload CSV" component={ FileUploadField } onFileUpload={ onFileUpload }/>
                 <ErrorMessage name="file"/>
-
-                <button className='btn-sm btn-primary-outline' type="submit">Submit</button>
             </Form>
         </Formik>
     );
