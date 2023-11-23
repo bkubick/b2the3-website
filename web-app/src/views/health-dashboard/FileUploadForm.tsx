@@ -33,7 +33,6 @@ function FileUploadForm<T>(props: Props<T>): React.JSX.Element {
      * @param actions   The form actions.
      */
     const onFileUpload = async (values: File): Promise<void> => {
-        console.log('onFileUpload: ', values);
         const file = values;
         if (file) {
             fileReader.onload = function (event) {
