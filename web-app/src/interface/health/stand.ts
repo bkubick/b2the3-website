@@ -12,7 +12,7 @@ interface Stand {
     startDatetime: string;
     endDatetime: string;
     unit: string;
-    value: number;
+    value: string | number;
 }
 
 
