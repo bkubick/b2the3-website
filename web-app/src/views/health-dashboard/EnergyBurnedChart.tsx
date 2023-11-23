@@ -47,7 +47,7 @@ const setupData = (data: EnergyBurned[]): ChartData[] => {
         if (millisecondsToMinutes(totalElapsedTime) >= 60) {
             const dataItem: ChartData = {
                 name: name,
-                caloriesBurned: totalcaloriesBurned,
+                caloriesBurned: Math.round(totalcaloriesBurned),
                 elapsedTime: millisecondsToMinutes(totalElapsedTime),
             };
 
@@ -65,7 +65,7 @@ const setupData = (data: EnergyBurned[]): ChartData[] => {
     if (totalElapsedTime > 0) {
         const dataItem: ChartData = {
             name: name,
-            caloriesBurned: totalcaloriesBurned,
+            caloriesBurned: Math.round(totalcaloriesBurned),
             elapsedTime: millisecondsToMinutes(totalElapsedTime),
         };
 
@@ -80,9 +80,9 @@ function EnergyBurnedChart(props: Props): React.JSX.Element {
 
     return (
         <ResponsiveContainer height={ 400 } width={ '100%' }>
-            <LineChart data={ setupData(props.data) } margin={{ top: 10, right: 30, left: 0, bottom: 30 }}>
+            <LineChart data={ setupData(props.data) } margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
                 <XAxis dataKey="name"/>
-                <YAxis label={{ value: "Energy Burned (Cal)", angle: -90 }} />
+                <YAxis label={{ value: "Energy Burned (Cal)", angle: -90, position: 'insideBottomLeft' }} />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip labelClassName='text-slate-600' />
                 <Line type="monotone" dataKey="caloriesBurned" stroke="#82ca9d" />
