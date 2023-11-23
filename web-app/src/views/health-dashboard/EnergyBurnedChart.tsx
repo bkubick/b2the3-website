@@ -51,7 +51,7 @@ const setupData = (data: EnergyBurned[]): ChartData[] => {
 function EnergyBurnedChart(props: Props): React.JSX.Element {
 
     return (
-        <ResponsiveContainer height={ 400 } width={ '50%' }>
+        <ResponsiveContainer height={ 400 } width={ '100%' }>
             <LineChart data={ setupData(props.data) } margin={{ top: 10, right: 30, left: 0, bottom: 30 }}>
                 <XAxis dataKey="name"/>
                 <YAxis label={{ value: "Energy Burned (Cal)", angle: -90 }} />
