@@ -3,6 +3,7 @@ import React, { ReactElement } from 'react';
 
 import { FileUploadField } from 'src/components/form/fields';
 import { Required } from 'src/components/form/validation';
+import { type Stand } from 'src/interface/health/stand';
 import { parseCSV } from 'src/utils/files';
 
 
@@ -11,26 +12,17 @@ interface FormValues {
 }
 
 
-interface HealthData {
-    id: string;
-    start: string;
-    end: string;
-    unit: string;
-    val: string;
-}
-
-
-const HealthDataMapping: Record<string, keyof HealthData> = {
+const StandDataMapping: Record<string, keyof Stand> = {
     id: 'id',
-    startDate: 'start',
-    endDate: 'end',
+    startDate: 'startDatetime',
+    endDate: 'endDatetime',
     unit: 'unit',
-    value: 'val',
+    value: 'value',
 };
 
 
 interface Props {
-    onSubmitHandler: (data: HealthData[]) => void;
+    onSubmitHandler: (data: Stand[]) => void;
 }
 
 
@@ -53,7 +45,7 @@ function FileUploadForm(props: Props): React.JSX.Element {
         if (file) {
             fileReader.onload = function (event) {
                 const csvOutput: string = event.target?.result as string;
-                const parsedCSV = parseCSV<HealthData>(csvOutput, HealthDataMapping, 1, (i: number) => `health-data-${i}`);
+                const parsedCSV = parseCSV<Stand>(csvOutput, StandDataMapping, 1, (i: number) => `stand-data-${i}`);
                 props.onSubmitHandler(parsedCSV);
                 console.log(parsedCSV);
             };
