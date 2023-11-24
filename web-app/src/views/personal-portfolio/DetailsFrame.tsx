@@ -229,7 +229,7 @@ class DetailsFrame extends React.Component<Props, State> {
                     <InView key="personal-projects-interests">
                         {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                             <div ref={ ref } className={`sticky top-0 backdrop-blur z-10 uppercase text-xl py-2 text-white mb-4 ${inView ? 'animate-fade-in' : ''}`}>
-                                Personal Projects & Interests
+                                Personal Projects
                             </div>
                         )}
                     </InView>

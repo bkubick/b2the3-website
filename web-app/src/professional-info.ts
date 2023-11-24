@@ -149,10 +149,12 @@ const workExperiences: WorkExperience[] = [
         startYear: 2020,
         endMonth: 7,
         endYear: 2021,
-        technologies: [Technology.SOLIDWORKS, Technology.AUTOCAD],
+        technologies: [Technology.SOLIDWORKS, Technology.AUTOCAD, Technology.ROBOT_STUDIO, Technology.RAPID],
         professionalSkills: [
             ProfessionalSkill.TECHNICAL_DOCUMENTATION,
-            ProfessionalSkill.PROBLEM_SOLVING
+            ProfessionalSkill.PROBLEM_SOLVING,
+            ProfessionalSkill.MANUFACTURING,
+            ProfessionalSkill.LEADERSHIP,
         ]
     },
     {
@@ -173,10 +175,11 @@ const workExperiences: WorkExperience[] = [
         startYear: 2020,
         endMonth: 7,
         endYear: 2021,
-        technologies: [Technology.SOLIDWORKS, Technology.AUTOCAD],
+        technologies: [Technology.SOLIDWORKS, Technology.AUTOCAD, Technology.ROBOT_STUDIO],
         professionalSkills: [
             ProfessionalSkill.TECHNICAL_DOCUMENTATION,
-            ProfessionalSkill.PROBLEM_SOLVING
+            ProfessionalSkill.PROBLEM_SOLVING,
+            ProfessionalSkill.LEADERSHIP,
         ]
     },
     {
@@ -214,7 +217,8 @@ const projects: Project[] = [
             Technology.TYPESCRIPT,
             Technology.FLASK,
             Technology.DOCKER,
-            Technology.SQL
+            Technology.SQL,
+            Technology.CHARTJS,
         ],
         startMonth: 9,
         startYear: 2022,
@@ -228,11 +232,11 @@ const projects: Project[] = [
             'Utilized Docker for containerization, and deployed the website on AWS.'
         ],
         technologies: [
-            Technology.VUE,
-            Technology.PYTHON,
+            Technology.REACT,
             Technology.TYPESCRIPT,
-            Technology.FLASK,
-            Technology.DOCKER,
+            Technology.TAILWIND,
+            Technology.AWS,
+            Technology.WEBPACK,
             Technology.GIT
         ],
         startMonth: 7,

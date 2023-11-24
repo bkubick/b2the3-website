@@ -1,6 +1,6 @@
 enum Technology {
-    REACT='React',
-    VUE='Vue',
+    REACT='React.js',
+    VUE='Vue.js',
     FLASK='Flask',
     PYTHON='Python',
     TYPESCRIPT='TypeScript',
@@ -8,6 +8,8 @@ enum Technology {
     CPP='C++',
     JAVA='Java',
     ROS='ROS',
+    ROBOT_STUDIO='RobotStudio',
+    RAPID='RAPID',
     MICROSOFT_OFFICE='Microsoft Office',
     MATLAB='MATLAB',
     SOLIDWORKS='SolidWorks',
@@ -24,7 +26,11 @@ enum Technology {
     MATPLOTLIB='Matplotlib',
     NUMPY='Numpy',
     SKLEARN='Scikit Learn',
-    PANDAS='Pandas'
+    PANDAS='Pandas',
+    GCP='Google Cloud Platform',
+    AWS='Amazon Web Services',
+    WEBPACK='Webpack',
+    CHARTJS='Chart.js',
 }
 
 
