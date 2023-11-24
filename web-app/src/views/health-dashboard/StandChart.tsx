@@ -80,7 +80,7 @@ function StandChart(props: Props): React.JSX.Element {
 
     return (
         <ResponsiveContainer height={ 400 } width={ '100%' }>
-            <AreaChart data={ setupData(props.standData) } margin={{ top: 10, right: 30, left: 0, bottom: 30 }}>
+            <AreaChart data={ setupData(props.standData) } margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
                 <defs>
                     <linearGradient id="colorElapsedTime" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#8884d8" stopOpacity={0.6}/>
@@ -92,7 +92,7 @@ function StandChart(props: Props): React.JSX.Element {
                     </linearGradient>
                 </defs>
                 <XAxis dataKey="name"/>
-                <YAxis label={{ value: "Stand Time (minutes)", angle: -90 }} />
+                <YAxis label={{ value: "Stand Time (minutes)", angle: -90, position: 'insideBottomLeft' }} />
                 <CartesianGrid strokeDasharray="3 3" />
                 <Tooltip labelClassName='text-slate-600' />
                 <Legend />

@@ -43,19 +43,19 @@ function HealthDashboard(): React.JSX.Element {
     return (
         <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}} exit={{ opacity: 0 }} className={`text-white w-full`}>
             <div className='mb-16'>
-                <h1 className='text-4xl font-bold mb-2'>Health Dashboard</h1>
+                <h1 className='text-4xl mb-2'>Health Dashboard</h1>
                 <p className='mt-3 text-slate-300 text-sm'>
                     This page is a dashboard for your health data. You can upload your health data to this page and view your health data in
                     charts. You can also download your health data from the Health app on your iPhone and upload your health data to this page.
                     The Simple Health Export CSV app on the iPhone allows you to export your health data as a CSV file. This page only supports CSV files.
                 </p>
             </div>
-            <div className='grid grid-cols-8 mb-8'>
-                <div className='col-span-3'>
-                    <h1 className='text-2xl font-bold mb-2'>Stand Data</h1>
+            <div className='grid grid-cols-8 mb-16'>
+                <div className='col-span-3 mr-1'>
+                    <h1 className='text-2xl mb-2'>Stand Data</h1>
                     <FileUploadForm<Stand> onSubmitHandler={ setStandData } fieldHeaderMapping={ StandDataMapping } idPrefix='stand-data' headerRowIndex={ 1 }/>
                     <p className='mt-3 text-slate-300 text-sm'>
-                        View your stand data from your Apple Watch. Upload a CSV file containing your stand data to view your stand data using the CSV app,
+                        View your stand data from your Apple Watch. Upload a CSV file containing your stand data using the CSV app,
                         Simple Health Export CSV, which can be downloaded from the App Store. The CSV file must contain the following columns:
                         startDate, endDate, unit, value.
                         <br />
@@ -69,12 +69,12 @@ function HealthDashboard(): React.JSX.Element {
                     <StandChart standData={ standData } />
                 </div>
             </div>
-            <div className='grid grid-cols-8 mb-8'>
-                <div className='col-span-5'>
+            <div className='grid grid-cols-8 mb-16'>
+                <div className='col-span-5 mr-1'>
                     <EnergyBurnedChart data={ energyData } />
                 </div>
                 <div className='col-span-3'>
-                    <h1 className='text-2xl font-bold mb-2'>Energy Burned</h1>
+                    <h1 className='text-2xl mb-2'>Energy Burned</h1>
                     <FileUploadForm<EnergyBurned> onSubmitHandler={ setEnergyData } fieldHeaderMapping={ EnergyBurnedDataMapping } idPrefix='energy-burned-data' headerRowIndex={ 1 }/>
                     <p className='mt-3 text-slate-300 text-sm'>
                         View your energy burned data from your Apple Watch. Upload a CSV file containing your energy burned data to view your
