@@ -2,7 +2,7 @@ import { EnergyBurned } from 'src/interface/health/energy';
 import { Stand } from 'src/interface/health/stand';
 import { getDatesBySplit } from 'src/utils/datetime';
 
-const SAMPLE_DATES = getDatesBySplit(new Date('2023-11-01 00:00:00'), new Date('2023-11-07 20:45:00'), 'hour');
+const SAMPLE_DATES = getDatesBySplit(new Date('2023-10-01 00:00:00'), new Date('2023-10-07 20:45:00'), 'hour');
 
 
 const STAND_DATA: Stand[] = [];

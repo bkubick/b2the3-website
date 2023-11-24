@@ -30,7 +30,7 @@ const EnergyBurnedDataMapping: Record<string, keyof EnergyBurned> = {
 
 function HealthDashboard(): React.JSX.Element {
 
-    setTitle('Health Dashboard');
+    setTitle('Health');
 
     const [standData, setStandData] = React.useState<Stand[]>(SampleData.STAND_DATA);
     const [energyData, setEnergyData] = React.useState<EnergyBurned[]>(SampleData.ENERGY_DATA);
@@ -43,11 +43,17 @@ function HealthDashboard(): React.JSX.Element {
     return (
         <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}} exit={{ opacity: 0 }} className={`text-white w-full`}>
             <div className='mb-16'>
-                <h1 className='text-4xl mb-2'>Health Dashboard</h1>
+                <h1 className='text-4xl mb-2'>Health Analytics</h1>
                 <p className='mt-3 text-slate-300 text-sm'>
-                    This page is a dashboard for your health data. You can upload your health data to this page and view your health data in
-                    charts. You can also download your health data from the Health app on your iPhone and upload your health data to this page.
-                    The Simple Health Export CSV app on the iPhone allows you to export your health data as a CSV file. This page only supports CSV files.
+                    This page is a dashboard for your health data. You can download your health data as a CSV from the Iphone app, Simple Health 
+                    Export CSV (available on the App Store for the Iphone). This page currently only supports CSV files downloaded
+                    from the Simple Health Export CSV app.
+                    <br />
+                    <br />
+                    Avoid uploading CSV files that contain data that is not supported by this page. For example, if you upload a CSV file that
+                    contains step data, the step data will not be displayed on this page. Additionally, avoid uploading CSV files that contain
+                    a significant amount of data. For example, if you upload a CSV file that contains data for the past year, the page may crash
+                    or become unresponsive. Support for large amounts of data will be added in the future.
                 </p>
             </div>
             <div className='grid grid-cols-8 mb-16'>
