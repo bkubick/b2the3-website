@@ -1,139 +1,31 @@
 import { EnergyBurned } from 'src/interface/health/energy';
 import { Stand } from 'src/interface/health/stand';
+import { getDatesBySplit } from 'src/utils/datetime';
+
+const SAMPLE_DATES = getDatesBySplit(new Date('2023-11-01 00:00:00'), new Date('2023-11-07 20:45:00'), 'hour');
 
 
-const STAND_DATA: Stand[] = [
-    {
-        id: 'stand-data-1',
-        startDatetime: '2023-11-01 00:00:00',
-        endDatetime: '2023-11-01 00:05:00',
-        unit: 'min',
-        value: 3,
-    },
-    {
-        id: 'stand-data-2',
-        startDatetime: '2023-11-01 00:05:00',
-        endDatetime: '2023-11-01 00:10:00',
-        unit: 'min',
-        value: 4,
-    },
-    {
-        id: 'stand-data-3',
-        startDatetime: '2023-11-01 00:10:00',
-        endDatetime: '2023-11-01 00:15:00',
-        unit: 'min',
-        value: 1,
-    },
-    {
-        id: 'stand-data-4',
-        startDatetime: '2023-11-01 00:15:00',
-        endDatetime: '2023-11-01 00:20:00',
-        unit: 'min',
-        value: 4,
-    },
-    {
-        id: 'stand-data-5',
-        startDatetime: '2023-11-01 00:20:00',
-        endDatetime: '2023-11-01 00:25:00',
-        unit: 'min',
-        value: 2,
-    },
-    {
-        id: 'stand-data-6',
-        startDatetime: '2023-11-01 00:25:00',
-        endDatetime: '2023-11-01 00:30:00',
-        unit: 'min',
-        value: 1,
-    },
-    {
-        id: 'stand-data-7',
-        startDatetime: '2023-11-01 00:30:00',
-        endDatetime: '2023-11-01 00:35:00',
-        unit: 'min',
-        value: 5,
-    },
-    {
-        id: 'stand-data-8',
-        startDatetime: '2023-11-01 00:35:00',
-        endDatetime: '2023-11-01 00:40:00',
-        unit: 'min',
-        value: 3,
-    },
-    {
-        id: 'stand-data-9',
-        startDatetime: '2023-11-01 00:40:00',
-        endDatetime: '2023-11-01 00:45:00',
-        unit: 'min',
-        value: 4,
-    },
-];
+const STAND_DATA: Stand[] = [];
+for (let i = 0; i < SAMPLE_DATES.length; i++) {
+    STAND_DATA.push({
+        id: `stand-data-${i}`,
+        startDatetime: SAMPLE_DATES[i].toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        endDatetime: SAMPLE_DATES[i].toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        unit: 'count',
+        value: Math.random() * 60,
+    });
+}
 
 
-const ENERGY_DATA: EnergyBurned[] = [
-    {
-        id: 'energy-data-1',
-        startDatetime: '2023-11-01 00:00:00',
-        endDatetime: '2023-11-01 00:00:03',
+const ENERGY_DATA: EnergyBurned[] = [];
+for (let i = 0; i < SAMPLE_DATES.length; i++) {
+    ENERGY_DATA.push({
+        id: `energy-data-${i}`,
+        startDatetime: SAMPLE_DATES[i].toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+        endDatetime: SAMPLE_DATES[i].toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
         unit: 'kcal',
-        value: 0.21,
-    },
-    {
-        id: 'energy-data-2',
-        startDatetime: '2023-11-01 00:00:03',
-        endDatetime: '2023-11-01 00:00:05',
-        unit: 'kcal',
-        value: 0.45,
-    },
-    {
-        id: 'energy-data-3',
-        startDatetime: '2023-11-01 00:00:05',
-        endDatetime: '2023-11-01 00:00:08',
-        unit: 'kcal',
-        value: 0.12,
-    },
-    {
-        id: 'energy-data-4',
-        startDatetime: '2023-11-01 00:00:08',
-        endDatetime: '2023-11-01 00:00:010',
-        unit: 'kcal',
-        value: 0.51,
-    },
-    {
-        id: 'energy-data-5',
-        startDatetime: '2023-11-01 00:00:10',
-        endDatetime: '2023-11-01 00:00:13',
-        unit: 'kcal',
-        value: 0.32,
-    },
-    {
-        id: 'energy-data-6',
-        startDatetime: '2023-11-01 00:00:13',
-        endDatetime: '2023-11-01 00:00:15',
-        unit: 'kcal',
-        value: 0.11,
-    },
-    {
-        id: 'energy-data-7',
-        startDatetime: '2023-11-01 00:00:15',
-        endDatetime: '2023-11-01 00:00:18',
-        unit: 'kcal',
-        value: 0.61,
-    },
-    {
-        id: 'energy-data-8',
-        startDatetime: '2023-11-01 00:00:18',
-        endDatetime: '2023-11-01 00:00:20',
-        unit: 'kcal',
-        value: 0.41,
-    },
-    {
-        id: 'energy-data-9',
-        startDatetime: '2023-11-01 00:00:20',
-        endDatetime: '2023-11-01 00:00:23',
-        unit: 'kcal',
-        value: 0.52,
-    },
-]
-
+        value: Math.random() * 100,
+    });
+}
 
 export { STAND_DATA, ENERGY_DATA };
