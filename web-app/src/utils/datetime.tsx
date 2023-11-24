@@ -39,4 +39,38 @@ const dateDiffInMilliseconds = (date1: string, date2: string): number => {
 }
 
 
-export { millisecondsToMinutes, dateDiffInMinutes, dateDiffInMilliseconds };
+/**
+ * Get dates by split.
+ * 
+ * @param minDatetime the starting date and time.
+ * @param maxDatetime the ending date and time.
+ * @param split the split type (hour or day).
+ * @returns 
+ */
+const getDatesBySplit = (minDatetime: Date, maxDatetime: Date, split: string = 'hour'): Date[] => {
+    const dates: Date[] = [];
+
+    const minHour = minDatetime.getHours();
+    const minDatetimeHour = new Date(minDatetime.getFullYear(),
+                                     minDatetime.getMonth(),
+                                     minDatetime.getDate(),
+                                     minHour, 0, 0, 0);
+
+    let splitMilliseconds: number;
+    if (split === 'hour') {
+        splitMilliseconds = 3600000;
+    } else if (split === 'day') {
+        splitMilliseconds = 86400000;
+    } else {
+        throw new Error(`Invalid split: ${split}`);
+    }
+
+    for (let i = minDatetimeHour.getTime(); i <= maxDatetime.getTime(); i += splitMilliseconds) {
+        dates.push(new Date(i));
+    }
+
+    return dates;
+}
+
+
+export { millisecondsToMinutes, dateDiffInMinutes, dateDiffInMilliseconds, getDatesBySplit };
