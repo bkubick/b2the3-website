@@ -5,6 +5,7 @@ import { Outlet, Routes, Route, useLocation } from "react-router-dom";
 import ToolMenu from 'src/views/ToolMenu';
 import StartupIdeaGenerator from 'src/views/idea-generator/StartupIdeaGenerator';
 import CoverLetterGenerator from 'src/views/cover-letter-generator/CoverLetterGenerator';
+import HealthDashboard from 'src/views/health-dashboard/HealthDashboard';
 import PersonalPortfolio from 'src/views/personal-portfolio/PersonalPortfolio';
 
 
@@ -19,6 +20,9 @@ function RoutesWithAnimation(): React.JSX.Element {
                     <Route path="" element={<ToolMenu />} />
                     <Route path="startup_idea_generator" element={<StartupIdeaGenerator />} />
                     <Route path="cover_letter_generator" element={<CoverLetterGenerator />} />
+                </Route>
+                <Route path="/health" element={<Outlet />} >
+                    <Route path="" element={<HealthDashboard />} />
                 </Route>
             </Routes>
         </AnimatePresence>
