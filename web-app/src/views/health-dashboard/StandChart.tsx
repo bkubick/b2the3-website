@@ -1,8 +1,8 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-import { type Stand } from 'src/interface/health/stand';
-import { dateDiffInMinutes } from 'src/utils/datetime';
+import { Stand } from 'src/interface/health/stand';
+import { getDatesBySplit } from 'src/utils/datetime';
 
 
 /**
@@ -36,41 +36,40 @@ interface AreaChartData {
  * @returns the chart data.
  */
 const setupData = (standData: Stand[]): AreaChartData[] => {
+    let minDatetime = new Date(standData[0].startDatetime);
+    let maxDatetime = new Date(standData[standData.length - 1].startDatetime);
+
+    const allHourDates: Date[] = getDatesBySplit(minDatetime, maxDatetime, 'hour');
     const data: AreaChartData[] = [];
 
-    let name: string = '';
-    let totalStandTime: number = 0;
-    let totalElapsedTime: number = 0;
-    standData.forEach((stand: Stand) => {
-        const elapsedTime: number = dateDiffInMinutes(stand.startDatetime, stand.endDatetime);
+    let i = 0;
+    allHourDates.forEach((date: Date) => {
+        const maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 59, 59, 999);
 
-        if (totalElapsedTime == 60) {
-            const dataItem: AreaChartData = {
-                name: name,
-                standTime: totalStandTime,
-                elapsedTime: totalElapsedTime,
-            };
+        let standTime = 0;
+        const name = date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
-            data.push(dataItem);
+        while (i < standData.length) {
+            const stand = standData[i];
+            const standDatetime = new Date(stand.startDatetime);
 
-            totalStandTime = 0;
-            totalElapsedTime = 0;
-        } else {
-            name = stand.startDatetime;
-            totalStandTime += typeof stand.value === 'string' ? parseInt(stand.value, 10) : stand.value;
-            totalElapsedTime += elapsedTime;
+            if (standDatetime.getTime() <= maxDatetime.getTime()) {
+                const value: number = typeof stand.value === 'string' ? parseInt(stand.value, 10) : stand.value;
+                standTime += value;
+                i++;
+            } else {
+                break;
+            }
         }
-    });
 
-    if (totalElapsedTime > 0) {
-        const dataItem: AreaChartData = {
+        const chartDataItem: AreaChartData = {
             name: name,
-            standTime: totalStandTime,
-            elapsedTime: totalElapsedTime,
+            standTime: standTime,
+            elapsedTime: 60,
         };
 
-        data.push(dataItem);
-    }
+        data.push(chartDataItem);
+    });
 
     return data;
 };
