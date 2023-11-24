@@ -30,14 +30,16 @@ interface FileUploadFieldArgs {
     label?: string;
     className?: string;
     validate?: (value: string | undefined) => string | undefined;
-    onFileUpload?: (value: File) => void;
+    onFileUpload?: (value: File, form?: any) => void;
 }
 
 
 const FileUploadField = ({ field, ...props }: FileUploadFieldArgs) => {
     const onChangeHandler = (event: React.ChangeEvent<any>) => {
+        props.form.setFieldTouched(field.name, true);
+
         if (props.onFileUpload) {
-            props.onFileUpload(event.currentTarget.files[0]);
+            props.onFileUpload(event.currentTarget.files[0], props.form);
         }
 
         props.form.setFieldValue(field.name, event.currentTarget.files[0]);

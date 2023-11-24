@@ -2,6 +2,7 @@ import { ErrorMessage, Formik, Form, Field } from 'formik';
 import React from 'react';
 
 import { FileUploadField } from 'src/components/form/fields';
+import { Error } from 'src/components/form/validation';
 import { parseCSV } from 'src/utils/files';
 
 
@@ -29,16 +30,23 @@ function FileUploadForm<T>(props: Props<T>): React.JSX.Element {
     /**
      * Form submission handler.
      * 
-     * @param values   The form values.
+     * @param file   The form values.
      * @param actions   The form actions.
      */
-    const onFileUpload = async (values: File): Promise<void> => {
-        const file = values;
+    const onFileUpload = async (file?: File, form?: any): Promise<void> => {
         if (file) {
             fileReader.onload = function (event) {
                 const csvOutput: string = event.target?.result as string;
-                const parsedCSV = parseCSV<T>(csvOutput, props.fieldHeaderMapping, props.headerRowIndex, (i: number) => `${props.idPrefix}-${i}`);
-                props.onSubmitHandler(parsedCSV);
+                try {
+                    const parsedCSV = parseCSV<T>(csvOutput, props.fieldHeaderMapping, props.headerRowIndex, (i: number) => `${props.idPrefix}-${i}`);
+                    props.onSubmitHandler(parsedCSV);
+                }
+                catch (error) {
+                    if (form) {
+                        form.setFieldError('file', Error('Invalid header rows. Please check the file and try again'));
+                    }
+                    console.log('File Upload Error: ', error);
+                }
             };
 
             fileReader.readAsText(file);

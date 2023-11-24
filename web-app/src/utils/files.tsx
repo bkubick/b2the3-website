@@ -14,6 +14,7 @@ type IdSetter = (index: number) => string;
  * @param fieldHeaderMapping the mapping of the object fields to the CSV header names.
  * @param headerRowIndex the index of the row containing the header names.
  * @param idSetter the function that sets the id of the object.
+ * @throws an error if the CSV file does not contain a header name that is specified in the fieldHeaderMapping.
  * @returns the CSV file as an array of objects.
  */
 function parseCSV<T>(text: string,
@@ -30,6 +31,13 @@ function parseCSV<T>(text: string,
     if (!headers.includes('id') && headerMappingKeys.includes('id')) {
         headers.push('id');
     }
+
+    // Check that the headers include all the fields in the fieldHeaderMapping.
+    headerMappingKeys.forEach((key: string) => {
+        if (!headers.includes(key)) {
+            throw new Error(`The CSV file does not contain the field ${key}.`);
+        }
+    });
 
     const array = rows.map((row: string, rowIndex: number) => {
         const values = row.split(regexSplit);
