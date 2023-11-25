@@ -12,6 +12,8 @@ import { getDatesBySplit } from 'src/utils/datetime';
  */
 interface Props {
     standData: Stand[];
+    minDate?: Date;
+    maxDate?: Date;
 }
 
 
@@ -29,27 +31,45 @@ interface AreaChartData {
 }
 
 
+const getIndexByDate = (date: Date, standData: Stand[]): number => {
+    let index = 0;
+    for (let i = 0; i < standData.length; i++) {
+        const stand = standData[i];
+        const standDatetime = new Date(stand.startDatetime);
+
+        if (standDatetime.getTime() <= date.getTime()) {
+            index = i;
+        } else {
+            break;
+        }
+    }
+
+    return index;
+}
+
+
 /**
  * Convert stand data to chart data.
  * 
  * @param standData the stand data to be converted to chart data.
  * @returns the chart data.
  */
-const setupData = (standData: Stand[]): AreaChartData[] => {
-    let minDatetime = new Date(standData[0].startDatetime);
-    let maxDatetime = new Date(standData[standData.length - 1].startDatetime);
+const setupData = (standData: Stand[], minDate?: Date, maxDate?: Date): AreaChartData[] => {
+    let minDatetime = minDate ? minDate : new Date(standData[0].startDatetime);
+    let maxDatetime = maxDate ? maxDate : new Date(standData[standData.length - 1].startDatetime);
 
     const allHourDates: Date[] = getDatesBySplit(minDatetime, maxDatetime, 'hour');
     const data: AreaChartData[] = [];
 
-    let i = 0;
+    const iMax = getIndexByDate(maxDatetime, standData);
+    let i = getIndexByDate(minDatetime, standData);
     allHourDates.forEach((date: Date) => {
         const maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 59, 59, 999);
 
         let standTime = 0;
         const name = date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
-        while (i < standData.length) {
+        while (i < iMax) {
             const stand = standData[i];
             const standDatetime = new Date(stand.startDatetime);
 
@@ -77,9 +97,11 @@ const setupData = (standData: Stand[]): AreaChartData[] => {
 
 function StandChart(props: Props): React.JSX.Element {
 
+    const data = setupData(props.standData, props.minDate, props.maxDate);
+
     return (
         <ResponsiveContainer height={ 400 } width={ '100%' }>
-            <AreaChart data={ setupData(props.standData) } margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
+            <AreaChart data={ data } margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
                 <defs>
                     <linearGradient id="colorElapsedTime" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#8884d8" stopOpacity={0.6}/>
