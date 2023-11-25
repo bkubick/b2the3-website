@@ -12,6 +12,8 @@ import { getDatesBySplit } from 'src/utils/datetime';
  */
 interface Props {
     data: EnergyBurned[];
+    minDate?: Date;
+    maxDate?: Date;
 }
 
 
@@ -29,27 +31,48 @@ interface ChartData {
 }
 
 
+const getIndexByDate = (date: Date, energyBurnedData: EnergyBurned[]): number => {
+    let index = 0;
+    for (let i = 0; i < energyBurnedData.length; i++) {
+        const energyBurned = energyBurnedData[i];
+        const energyBurnedDatetime = new Date(energyBurned.startDatetime);
+
+        if (energyBurnedDatetime.getTime() <= date.getTime()) {
+            index = i;
+        } else {
+            break;
+        }
+    }
+
+    return index;
+}
+
+
 /**
  * Convert enery data to chart data.
  * 
  * @param energyData the enery data to be converted to chart data.
+ * @param minDate the minimum date.
+ * @param maxDate the maximum date.
  * @returns the chart data.
  */
-const setupData = (energyData: EnergyBurned[]): ChartData[] => {
-    let minDatetime = new Date(energyData[0].startDatetime);
-    let maxDatetime = new Date(energyData[energyData.length - 1].startDatetime);
+const setupData = (energyData: EnergyBurned[], minDate?: Date, maxDate?: Date): ChartData[] => {
+    let minDatetime = minDate ? minDate : new Date(energyData[0].startDatetime);
+    let maxDatetime = maxDate ? maxDate : new Date(energyData[energyData.length - 1].startDatetime);
 
     const allHourDates: Date[] = getDatesBySplit(minDatetime, maxDatetime, 'hour');
     const data: ChartData[] = [];
 
-    let i = 0;
+    const iMax = getIndexByDate(maxDatetime, energyData);
+    let i = getIndexByDate(minDatetime, energyData);
+
     allHourDates.forEach((date: Date) => {
         const maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 59, 59, 999);
 
         let burned = 0;
         const name = date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
 
-        while (i < energyData.length) {
+        while (i < iMax) {
             const stand = energyData[i];
             const standDatetime = new Date(stand.startDatetime);
 
@@ -76,10 +99,11 @@ const setupData = (energyData: EnergyBurned[]): ChartData[] => {
 
 
 function EnergyBurnedChart(props: Props): React.JSX.Element {
+    const data = setupData(props.data, props.minDate, props.maxDate);
 
     return (
         <ResponsiveContainer height={ 400 } width={ '100%' }>
-            <LineChart data={ setupData(props.data) } margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
+            <LineChart data={ data } margin={{ top: 10, right: 30, left: 10, bottom: 30 }}>
                 <XAxis dataKey="name"/>
                 <YAxis label={{ value: "Energy Burned (Cal)", angle: -90, position: 'insideBottomLeft' }} />
                 <CartesianGrid strokeDasharray="3 3" />
