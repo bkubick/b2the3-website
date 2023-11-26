@@ -12,8 +12,9 @@ import { getDatesBySplit } from 'src/utils/datetime';
  */
 interface Props {
     data: EnergyBurned[];
-    minDate?: Date;
-    maxDate?: Date;
+    minDate: Date;
+    maxDate: Date;
+    period: string;
 }
 
 
@@ -22,12 +23,10 @@ interface Props {
  * 
  * @property name the name of the data item.
  * @property caloriesBurned the amount of calories burned.
- * @property elapsedTime the elapsed time.
  */
 interface ChartData {
     name: string;
     caloriesBurned: number;
-    elapsedTime: number;
 }
 
 
@@ -56,18 +55,21 @@ const getIndexByDate = (date: Date, energyBurnedData: EnergyBurned[]): number =>
  * @param maxDate the maximum date.
  * @returns the chart data.
  */
-const setupData = (energyData: EnergyBurned[], minDate?: Date, maxDate?: Date): ChartData[] => {
+const setupData = (energyData: EnergyBurned[], minDate?: Date, maxDate?: Date, period?: string): ChartData[] => {
     let minDatetime = minDate ? minDate : new Date(energyData[0].startDatetime);
     let maxDatetime = maxDate ? maxDate : new Date(energyData[energyData.length - 1].startDatetime);
 
-    const allHourDates: Date[] = getDatesBySplit(minDatetime, maxDatetime, 'hour');
+    const allHourDates: Date[] = getDatesBySplit(minDatetime, maxDatetime, period);
     const data: ChartData[] = [];
 
     const iMax = getIndexByDate(maxDatetime, energyData);
     let i = getIndexByDate(minDatetime, energyData);
 
     allHourDates.forEach((date: Date) => {
-        const maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 59, 59, 999);
+        let maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 59, 59, 999);
+        if (period === 'day') {
+            maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59, 999);
+        }
 
         let burned = 0;
         const name = date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -88,7 +90,6 @@ const setupData = (energyData: EnergyBurned[], minDate?: Date, maxDate?: Date): 
         const chartDataItem: ChartData = {
             name: name,
             caloriesBurned: Math.round(burned),
-            elapsedTime: 60,
         };
 
         data.push(chartDataItem);
@@ -99,7 +100,7 @@ const setupData = (energyData: EnergyBurned[], minDate?: Date, maxDate?: Date): 
 
 
 function EnergyBurnedChart(props: Props): React.JSX.Element {
-    const data = setupData(props.data, props.minDate, props.maxDate);
+    const data = setupData(props.data, props.minDate, props.maxDate, props.period);
 
     return (
         <ResponsiveContainer height={ 400 } width={ '100%' }>

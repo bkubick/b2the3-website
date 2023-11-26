@@ -12,8 +12,9 @@ import { getDatesBySplit } from 'src/utils/datetime';
  */
 interface Props {
     standData: Stand[];
-    minDate?: Date;
-    maxDate?: Date;
+    minDate: Date;
+    maxDate: Date;
+    period: string;
 }
 
 
@@ -54,17 +55,20 @@ const getIndexByDate = (date: Date, standData: Stand[]): number => {
  * @param standData the stand data to be converted to chart data.
  * @returns the chart data.
  */
-const setupData = (standData: Stand[], minDate?: Date, maxDate?: Date): AreaChartData[] => {
+const setupData = (standData: Stand[], minDate: Date, maxDate: Date, period: string): AreaChartData[] => {
     let minDatetime = minDate ? minDate : new Date(standData[0].startDatetime);
     let maxDatetime = maxDate ? maxDate : new Date(standData[standData.length - 1].startDatetime);
 
-    const allHourDates: Date[] = getDatesBySplit(minDatetime, maxDatetime, 'hour');
+    const allDates: Date[] = getDatesBySplit(minDatetime, maxDatetime, period);
     const data: AreaChartData[] = [];
 
     const iMax = getIndexByDate(maxDatetime, standData);
     let i = getIndexByDate(minDatetime, standData);
-    allHourDates.forEach((date: Date) => {
-        const maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 59, 59, 999);
+    allDates.forEach((date: Date) => {
+        let maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), 59, 59, 999);
+        if (period === 'day') {
+            maxDatetime = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 23, 59, 59, 999);
+        }
 
         let standTime = 0;
         const name = date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -85,7 +89,7 @@ const setupData = (standData: Stand[], minDate?: Date, maxDate?: Date): AreaChar
         const chartDataItem: AreaChartData = {
             name: name,
             standTime: standTime,
-            elapsedTime: 60,
+            elapsedTime: period === 'hour' ? 60 : 1440,
         };
 
         data.push(chartDataItem);
@@ -97,7 +101,7 @@ const setupData = (standData: Stand[], minDate?: Date, maxDate?: Date): AreaChar
 
 function StandChart(props: Props): React.JSX.Element {
 
-    const data = setupData(props.standData, props.minDate, props.maxDate);
+    const data = setupData(props.standData, props.minDate, props.maxDate, props.period);
 
     return (
         <ResponsiveContainer height={ 400 } width={ '100%' }>

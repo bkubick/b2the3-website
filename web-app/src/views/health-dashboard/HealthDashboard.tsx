@@ -44,6 +44,8 @@ function HealthDashboard(): React.JSX.Element {
     const [energyMaxDatetime, setEnergyMaxDatetime] = React.useState<Date>(new Date(energyData[energyData.length - 1].startDatetime));
     const [energyMinShownDatetime, setEnergyMinShownDatetime] = React.useState<Date>(new Date(energyData[0].startDatetime));
     const [energyMaxShownDatetime, setEnergyMaxShownDatetime] = React.useState<Date>(new Date(energyData[energyData.length - 1].startDatetime));
+    const [standPeriod, setStandPeriod] = React.useState<string>('hour');
+    const [energyPeriod, setEnergyPeriod] = React.useState<string>('hour');
 
     // Set the stand data and energy data to the sample data.
     useEffect(() => {
@@ -77,6 +79,22 @@ function HealthDashboard(): React.JSX.Element {
         setEnergyMaxShownDatetime(dates[1]);
     }
 
+    const onStandPeriodChange = (period: string) => {
+        if (period.endsWith('daily')) {
+            setStandPeriod('day');
+        } else {
+            setStandPeriod('hour');
+        }
+    }
+
+    const onEnergyBurnedPeriodChange = (period: string) => {
+        if (period.endsWith('daily')) {
+            setEnergyPeriod('day');
+        } else {
+            setEnergyPeriod('hour');
+        }
+    }
+
     // Return the JSX element.
     return (
         <m.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: .25}} exit={{ opacity: 0 }} className={`text-white w-full`}>
@@ -100,7 +118,7 @@ function HealthDashboard(): React.JSX.Element {
                     <div className='mb-4'>
                         <FileUploadForm<Stand> onSubmitHandler={ onStandDataUpload } fieldHeaderMapping={ StandDataMapping } idPrefix='stand-data' headerRowIndex={ 1 }/>
                     </div>
-                    <ChartFilterForm onDatesChange={ onStandDateChange } minDate={ standMinDatetime } maxDate={ standMaxDatetime }/>
+                    <ChartFilterForm onDatesChange={ onStandDateChange } onPeriodChange={ onStandPeriodChange } minDate={ standMinDatetime } maxDate={ standMaxDatetime } formId='stand-time'/>
                     <p className='mt-3 text-slate-300 text-sm'>
                         View your stand data from your Apple Watch. Upload a CSV file containing your stand data using the CSV app,
                         Simple Health Export CSV, which can be downloaded from the App Store. The CSV file must contain the following columns:
@@ -113,20 +131,20 @@ function HealthDashboard(): React.JSX.Element {
                     </p>
                 </div>
                 <div className='col-span-5'>
-                    <StandChart standData={ standData } minDate={ standMinShownDatetime } maxDate={ standMaxShownDatetime }/>
+                    <StandChart standData={ standData } minDate={ standMinShownDatetime } maxDate={ standMaxShownDatetime } period={ standPeriod }/>
                 </div>
             </div>
             <div className='grid grid-cols-8 pb-32'>
                 <div className='col-span-5 mr-1'>
-                    <EnergyBurnedChart data={ energyData } minDate={ energyMinShownDatetime } maxDate={ energyMaxShownDatetime }/>
+                    <EnergyBurnedChart data={ energyData } minDate={ energyMinShownDatetime } maxDate={ energyMaxShownDatetime } period={ energyPeriod }/>
                 </div>
                 <div className='col-span-3'>
                     <h1 className='text-2xl mb-2'>Energy Burned</h1>
                     <div className='mb-4'>
                         <FileUploadForm<EnergyBurned> onSubmitHandler={ onEnergyDataUpload } fieldHeaderMapping={ EnergyBurnedDataMapping } idPrefix='energy-burned-data' headerRowIndex={ 1 }/>
                     </div>
-                    <ChartFilterForm onDatesChange={ onEnergyDateChange } minDate={ energyMinDatetime } maxDate={ energyMaxDatetime }/>
-                    <p className='mt-3 text-slate-300 text-sm'>
+                    <ChartFilterForm onDatesChange={ onEnergyDateChange } onPeriodChange={ onEnergyBurnedPeriodChange } minDate={ energyMinDatetime } maxDate={ energyMaxDatetime } formId='energy-burned'/>
+                    <p className='mt-3 text-slate-300 text-sm pl-2'>
                         View your energy burned data from your Apple Watch. Upload a CSV file containing your energy burned data to view your
                         energy burned data using the CSV app, Simple Health Export CSV, which can be downloaded from the App Store. The CSV file
                         must contain the following columns: startDate, endDate, unit, value.
