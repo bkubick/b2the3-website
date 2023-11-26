@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import BreadCrumbs, { getBreadCrumbsFromPathname } from 'src/components/bread-crumbs';
 import Logo from 'src/static/img/logos/b_to_the_3_logo.svg';
+import { addKeyDownListener } from 'src/utils/listeners';
 
 
 interface Section {
@@ -46,6 +47,7 @@ function Header(props: Props) {
     const [startingSection, setStartingSection] = useState<Section>(activeSection);
     const [startingActiveCircleXPosition, setStartingActiveCircleXPosition] = useState<number>(0);
     const [currentActiveCircleXPosition, setCurrentActiveCircleXPosition] = useState<number>(0);
+    const [showLogin, setShowLogin] = useState<boolean>(false);
 
     /**
      * Gets the x position of the section.
@@ -107,6 +109,22 @@ function Header(props: Props) {
         )
     }
 
+    /**
+     * Setting up key listeners to hide and show the login button
+     * when the user presses 'L' or 'H' respectively.
+     * 
+     * This allows me to login to see my personal pages without
+     * having to add a login button to the navbar and cluttering it.
+     * 
+     * This isn't a security issue, just a convenience feature for me
+     * to see my personal pages. The login security will still be in place
+     * using standard login authentication methods.
+     */
+    useEffect(() => {
+        addKeyDownListener('KeyL', ()=>{ setShowLogin(true)});
+        addKeyDownListener('KeyH', ()=>{ setShowLogin(false)});
+    }, []);
+
     // Setting Up position on page load
     useEffect(() => {
         const startingCircleXPosition: number = getNavbarSectionXPosition(activeSection);
@@ -129,6 +147,12 @@ function Header(props: Props) {
                 <div className='text-left flex pl-3 mb-auto mt-3'>
                     <BreadCrumbs crumbs={ getBreadCrumbsFromPathname(location.pathname) } />
                 </div>
+                { showLogin ? (
+                        <div className='ml-auto mt-auto mb-auto animate-fade-in'>
+                            <button className='btn btn-tertiary-outline'>Login</button>
+                        </div>
+                    ) : ''                    
+                }
             </div>
         </div>
     )
