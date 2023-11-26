@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import CoverLetterGeneratorImg from 'src/static/img/pages/cover_letter_generator.png';
 import StartupIdeaGeneratorImg from 'src/static/img/pages/startup_idea_generator.png';
 import { setTitle } from 'src/utils/display';
-import { addCursorFollowerListener } from 'src/utils/followers';
 import { preloadImages } from 'src/utils/loading';
 
 
@@ -58,7 +57,6 @@ class ToolMenu extends React.Component<Props, State> {
      * Adds a cursor follower listener when the component mounts.
      */
     componentDidMount(): void {
-        addCursorFollowerListener();
         setTitle('Tools')
 
         const images: string[] = this.toolCards.map((toolCard) => { if (toolCard.image) return toolCard.image; }) as string[];
