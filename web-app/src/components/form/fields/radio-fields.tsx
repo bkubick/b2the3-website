@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useField } from "formik";
 
 import { Option } from './types';
 
@@ -28,8 +29,10 @@ interface RadioField {
  */
 interface RadioGroupProps {
     className?: string;
+    form?: any;
     validate?: (value: string | undefined) => string | undefined;
     options: Option[];
+    onOptionChange?: (value: string) => void;
 }
 
 
@@ -53,10 +56,26 @@ interface RadioGroupArgs extends RadioGroupProps {
  * @returns React.JSX.Element with the radio item.
  */
 function radioItem(option: Option, index: number, field: RadioField, props: RadioGroupProps): React.JSX.Element {
+
+    const [value, setValue] = useState<string | undefined>(field.value);
+    const [formikField, state, helpers] = useField(field.name);
+
+    const onChangeHandler = (event: React.ChangeEvent<any>) => {
+        const newValue = event.currentTarget.value;
+
+        props.form.setFieldTouched(field.name, true);
+        helpers.setValue(newValue);
+        setValue(newValue);
+
+        if (props.onOptionChange) {
+            props.onOptionChange(newValue);
+        }
+    }
+
     const checked = field.value === option.value;
     return (
         <div key={ index } className='mr-4'>
-            <input type="radio" id={ option.value } { ...field } { ...props } value={ option.value } className={ 'mr-2' } checked={ checked }/>
+            <input type="radio" id={ option.value } { ...field } { ...props } onChange={ onChangeHandler } value={ option.value } className={ 'mr-2' } checked={ checked }/>
             <label htmlFor={ option.value }>{ option.label }</label>
         </div>
     )
