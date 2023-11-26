@@ -14,6 +14,14 @@
     @apply -translate-y-1 shadow-md shadow-primary;
 }
 
+.btn-tertiary-outline {
+    @apply text-tertiary border-2 border-tertiary transition ease-in-out duration-150 inline-block;
+}
+
+.btn-tertiary-outline:hover {
+    @apply -translate-y-1 shadow-md shadow-tertiary;
+}
+
 .card {
     @apply rounded;
 }
