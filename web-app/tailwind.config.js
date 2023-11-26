@@ -10,6 +10,7 @@ module.exports = {
       colors: {
         'primary': '#00D1FF',
         'secondary': '#061728',
+        'tertiary': '#82ca9d',
       },
       animation: {
         'fade-in': 'fadeIn 0.75s ease-in',
