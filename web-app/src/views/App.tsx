@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
 
-import { addCursorFollowerListener } from 'src/utils/followers';
+import { addCursorFollowerListener } from 'src/utils/listeners';
 import RoutesWithAnimation from './RoutesWithAnimation';
 
 import Header from './Header';
@@ -12,44 +12,36 @@ interface Section {
 }
 
 
-interface Props {}
+/**
+ * The main component of the application.
+ * 
+ * @returns The main component of the application.
+ */
+function App(): React.JSX.Element {
 
-
-interface State {}
-
-
-class App extends React.Component<Props, State> {
-
-    sections: Section[] = [
+    const sections: Section[] = [
         {title: 'home', route: '/'},
         {title: 'health', route: '/health'},
         {title: 'tools', route: '/tools'},
     ];
 
-    constructor(props: Props) {
-        super(props);
-        this.state = {}
-    }
-
     /**
      * Adds a cursor follower listener when the component mounts.
      */
-    componentDidMount(): void {
+    useEffect(() => {
         addCursorFollowerListener();
-    }
+    }, []);
 
-    render() {
-        return (
-            <div id='app' className='container mx-auto h-screen w-full overflow-scroll no-scrollbar'>
-                <BrowserRouter>
-                    <Header sections={ this.sections } />
-                    <div className='mx-auto flex container-height'>
-                        <RoutesWithAnimation />
-                    </div>
-                </BrowserRouter>
-            </div>
-        )
-    }
+    return (
+        <div id='app' className='container mx-auto h-screen w-full overflow-scroll no-scrollbar'>
+            <BrowserRouter>
+                <Header sections={ sections } />
+                <div className='mx-auto flex container-height'>
+                    <RoutesWithAnimation />
+                </div>
+            </BrowserRouter>
+        </div>
+    )
 }
 
 
