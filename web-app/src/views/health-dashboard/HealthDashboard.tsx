@@ -53,45 +53,59 @@ function HealthDashboard(): React.JSX.Element {
         setEnergyData(SampleData.ENERGY_DATA);
     }, []);
 
-    const onStandDataUpload = (data: Stand[]) => {
-        setStandData(data);
-        setStandMinDatetime(new Date(data[0].startDatetime));
-        setStandMaxDatetime(new Date(data[data.length - 1].startDatetime));
-        setStandMinShownDatetime(new Date(data[0].startDatetime));
-        setStandMaxShownDatetime(new Date(data[data.length - 1].startDatetime));
-    }
-
-    const onStandDateChange = (dates: Date[]) => {
-        setStandMinShownDatetime(dates[0]);
-        setStandMaxShownDatetime(dates[1]);
-    }
-    
-    const onEnergyDataUpload = (data: EnergyBurned[]) => {
-        setEnergyData(data);
-        setEnergyMinDatetime(new Date(data[0].startDatetime));
-        setEnergyMaxDatetime(new Date(data[data.length - 1].startDatetime));
-        setEnergyMinShownDatetime(new Date(data[0].startDatetime));
-        setEnergyMaxShownDatetime(new Date(data[data.length - 1].startDatetime));
-    }
-
-    const onEnergyDateChange = (dates: Date[]) => {
-        setEnergyMinShownDatetime(dates[0]);
-        setEnergyMaxShownDatetime(dates[1]);
-    }
-
-    const onStandPeriodChange = (period: string) => {
-        if (period.endsWith('daily')) {
-            setStandPeriod('day');
-        } else {
-            setStandPeriod('hour');
+    /**
+     * Generate a function that sets the data, minimum date, maximum date, minimum shown date,
+     * and maximum shown date based on the data array.
+     * 
+     * @param dataSetter the function to set the data
+     * @param minDatetimeSetter the function to set the minimum date
+     * @param maxDatetimeSetter the function to set the maximum date
+     * @param minShownDatetimeSetter the function to set the minimum shown date
+     * @param maxShownDatetimeSetter the function to set the maximum shown date
+     * @returns the function that sets the data, minimum date, maximum date, minimum shown date,
+     *          and maximum shown date.
+     */
+    const dataUploadFunctionGenerator = (dataSetter: (data: any[])=>void,
+                                         minDatetimeSetter: (date: Date)=>void,
+                                         maxDatetimeSetter: (date: Date)=>void,
+                                         minShownDatetimeSetter: (date: Date)=>void,
+                                         maxShownDatetimeSetter: (date: Date)=>void) => {
+        return (data: any[]) => {
+            dataSetter(data);
+            minDatetimeSetter(new Date(data[0].startDatetime));
+            maxDatetimeSetter(new Date(data[data.length - 1].startDatetime));
+            minShownDatetimeSetter(new Date(data[0].startDatetime));
+            maxShownDatetimeSetter(new Date(data[data.length - 1].startDatetime));
         }
     }
 
-    const onEnergyBurnedPeriodChange = (period: string) => {
-        if (period.endsWith('daily')) {
-            setEnergyPeriod('day');
-        } else {
-            setEnergyPeriod('hour');
+    /**
+     * Generate a function that sets the minimum and maximum dates based on the dates array.
+     * 
+     * @param minSetter the function to set the minimum date
+     * @param maxSetter the function to set the maximum date
+     * @returns the function that sets the minimum and maximum dates.
+     */
+    const dateChangeFunctionGenerator = (minSetter: (date: Date)=>void, maxSetter: (date: Date)=>void) => {
+        return (dates: Date[]) => {
+            minSetter(dates[0]);
+            maxSetter(dates[1]);
+        }
+    }
+
+    /**
+     * Generate a function that sets the period based on the period string.
+     * 
+     * @param setter the function to set the period
+     * @returns the function that sets the period.
+     */
+    const periodChangeFunctionGenerator = (setter: (period: string)=>void) => {
+        return (period: string) => {
+            if (period.endsWith('daily')) {
+                setter('day');
+            } else {
+                setter('hour');
+            }
         }
     }
 
@@ -116,9 +130,14 @@ function HealthDashboard(): React.JSX.Element {
                 <div className='col-span-3 mr-1'>
                     <h1 className='text-2xl mb-2'>Stand Data</h1>
                     <div className='mb-4'>
-                        <FileUploadForm<Stand> onSubmitHandler={ onStandDataUpload } fieldHeaderMapping={ StandDataMapping } idPrefix='stand-data' headerRowIndex={ 1 }/>
+                        <FileUploadForm<Stand>
+                            onSubmitHandler={ dataUploadFunctionGenerator(setStandData, setStandMinDatetime, setStandMaxDatetime, setStandMinShownDatetime, setStandMaxShownDatetime) }
+                            fieldHeaderMapping={ StandDataMapping }
+                            idPrefix='stand-data'
+                            headerRowIndex={ 1 }
+                        />
                     </div>
-                    <ChartFilterForm onDatesChange={ onStandDateChange } onPeriodChange={ onStandPeriodChange } minDate={ standMinDatetime } maxDate={ standMaxDatetime } formId='stand-time'/>
+                    <ChartFilterForm onDatesChange={ dateChangeFunctionGenerator(setStandMinShownDatetime, setStandMaxShownDatetime) } onPeriodChange={ periodChangeFunctionGenerator(setStandPeriod) } minDate={ standMinDatetime } maxDate={ standMaxDatetime } formId='stand-time'/>
                     <p className='mt-3 text-slate-300 text-sm'>
                         View your stand data from your Apple Watch. Upload a CSV file containing your stand data using the CSV app,
                         Simple Health Export CSV, which can be downloaded from the App Store. The CSV file must contain the following columns:
@@ -141,9 +160,14 @@ function HealthDashboard(): React.JSX.Element {
                 <div className='col-span-3'>
                     <h1 className='text-2xl mb-2'>Energy Burned</h1>
                     <div className='mb-4'>
-                        <FileUploadForm<EnergyBurned> onSubmitHandler={ onEnergyDataUpload } fieldHeaderMapping={ EnergyBurnedDataMapping } idPrefix='energy-burned-data' headerRowIndex={ 1 }/>
+                        <FileUploadForm<EnergyBurned>
+                            onSubmitHandler={ dataUploadFunctionGenerator(setEnergyData, setEnergyMinDatetime, setEnergyMaxDatetime, setEnergyMinShownDatetime, setEnergyMaxShownDatetime) }
+                            fieldHeaderMapping={ EnergyBurnedDataMapping }
+                            idPrefix='energy-burned-data'
+                            headerRowIndex={ 1 }
+                        />
                     </div>
-                    <ChartFilterForm onDatesChange={ onEnergyDateChange } onPeriodChange={ onEnergyBurnedPeriodChange } minDate={ energyMinDatetime } maxDate={ energyMaxDatetime } formId='energy-burned'/>
+                    <ChartFilterForm onDatesChange={ dateChangeFunctionGenerator(setEnergyMinShownDatetime, setEnergyMaxShownDatetime) } onPeriodChange={ periodChangeFunctionGenerator(setEnergyPeriod) } minDate={ energyMinDatetime } maxDate={ energyMaxDatetime } formId='energy-burned'/>
                     <p className='mt-3 text-slate-300 text-sm pl-2'>
                         View your energy burned data from your Apple Watch. Upload a CSV file containing your energy burned data to view your
                         energy burned data using the CSV app, Simple Health Export CSV, which can be downloaded from the App Store. The CSV file
