@@ -45,6 +45,12 @@ My Engineering Portfolio is a website built using a React, TypeScript, and Tailw
 As I build out my skillset, I need a centralized location that highlights my experience, projects, and skills. To me, the best way to fully broadcast my skills was to build out a personal website that will house summaries of all my current and previous work, along with the skills that each experience exemplifies.
 
 
+### Health
+A dashboard that is paired with the apple watch data, and is able to nicely plot specific data to highlight areas of my health. This is useful for tracking and analyzing my personal health, where I can come up with new goals and watch how my activity changes.
+
+Note that this page is still in work, and requires data to be uploaded in a specific format. I plan to update this to work directly with my apple watch data, but that is future work.
+
+
 ### Tools
 
 #### 1. Cover Letter Generator
