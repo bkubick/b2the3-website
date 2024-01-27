@@ -29,7 +29,5 @@ def lambda_handler(event: dict, context: LambdaContext) -> dict:
 
     return {
         'statusCode': 200,
-        'body': {
-            'contactInfo': contactInfo,
-        }
+        'body': contactInfo,
     }
