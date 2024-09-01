@@ -8,7 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^0.21.4",
-    "formik": "^2.4.5",
+    "formik": "^2.4.6",
     "framer-motion": "^10.16.5",
     "langchain": "^0.0.173",
     "react": "^18.2.0",
