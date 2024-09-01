@@ -97,7 +97,7 @@ class DetailsFrame extends React.Component<Props, State> {
         return (
             <InView key={education.courses + education.degree}>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
+                    <div ref={ ref } className={ `card shadow-hover p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <CollapsiblePanel>
                             {{
                                 icon: <img className='w-12 mr-4 rounded' src={ education.school.img } alt={ education.school.name }/>,
@@ -132,7 +132,7 @@ class DetailsFrame extends React.Component<Props, State> {
         return (
             <InView key={ project.title }>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
-                    <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
+                    <div ref={ ref } className={ `card shadow-hover p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <CollapsiblePanel>
                         {{
                             icon: project.img ? <img className='w-12 mr-4 rounded' src={ project.img } alt={ project.title }/> : '',
