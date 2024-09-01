@@ -56,7 +56,7 @@ class DetailsFrame extends React.Component<Props, State> {
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                     <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <div className='grid grid-flow-col auto-cols-auto'>
-                            <img className='col-auto h-12 mr-4 rounded' src={ workExperience.company.img } alt={ workExperience.company.img }/>
+                            <img className='col-auto w-12 mr-4 rounded' src={ workExperience.company.img } alt={ workExperience.company.img }/>
                             <div>
                                 <div>
                                     <div className='text-lg text-slate-300'>
@@ -100,7 +100,7 @@ class DetailsFrame extends React.Component<Props, State> {
                     <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <CollapsiblePanel>
                             {{
-                                icon: <img className='h-12 mr-4 rounded' src={ education.school.img } alt={ education.school.name }/>,
+                                icon: <img className='w-12 mr-4 rounded' src={ education.school.img } alt={ education.school.name }/>,
                                 header: (
                                     <div>
                                         <div className='text-lg text-slate-300'>
@@ -135,7 +135,7 @@ class DetailsFrame extends React.Component<Props, State> {
                     <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <CollapsiblePanel>
                         {{
-                            icon: project.img ? <img className='h-12 mr-4 rounded' src={ project.img } alt={ project.title }/> : '',
+                            icon: project.img ? <img className='w-12 mr-4 rounded' src={ project.img } alt={ project.title }/> : '',
                             header: (
                                 <div>
                                     <div className='text-lg text-slate-300 flex items-center'>
