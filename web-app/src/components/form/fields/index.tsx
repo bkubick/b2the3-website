@@ -1,8 +1,8 @@
 import { DatePickerField } from "./date";
 import { FileUploadField } from "./file";
-import { RadioGroup } from "./radio-fields";
+import { RadioGroup } from "./radio";
 import { CreatableSelectField, SelectField } from "./select";
-import { InputField, TextareaField } from "./text-fields";
+import { InputField, TextareaField } from "./text";
 import * as fieldTypes from "./types";
 
 
