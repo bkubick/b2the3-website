@@ -19,7 +19,7 @@ function Pill(props: Props): React.JSX.Element {
     const textColorClass = props.textColor ? `text-${props.textColor}` : 'text-primary';
 
     return (
-        <span className={`border-2 rounded-full px-4 py-1 text-xs mx-1 mb-1 ${borderColorClass} ${textColorClass}`}>
+        <span className={`border-1 rounded-full px-4 py-1 text-xxs mx-1 mb-1 ${borderColorClass} ${textColorClass}`}>
             {props.text}
         </span>
     );

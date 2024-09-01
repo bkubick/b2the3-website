@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontSize: {
+        xxs: '.6rem',
+      },
       colors: {
         'primary': '#00D1FF',
         'secondary': '#061728',
@@ -28,6 +31,9 @@ module.exports = {
       },
       borderWidth: {
         '1': '1px',
+      },
+      transitionProperty: {
+        'height': 'height',
       },
     },
   },
