@@ -16,7 +16,7 @@ function getBreadCrumbsFromPathname(pathname: string): BreadCrumb[] {
     pathnames.forEach((_, index) => {
         const url = `/${pathnames.slice(0, index + 1).join("/")}`;
         breadCrumbs.push({
-            title: pathnames[index],
+            title: pathnames[index].split("_").join(" ").toLocaleUpperCase(),
             route: url,
         });
     });
