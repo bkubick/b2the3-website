@@ -14,9 +14,8 @@ import SB3Logo from 'src/static/img/icons/sb3_logo.png';
 import TurbineAeroLogo from 'src/static/img/icons/turbineaero_logo.png';
 
 
-const columbia: College = {
-    name: 'Columbia University'
-}
+const columbia: College = { name: 'Columbia University', img: ColumbiaLogo };
+const redlands: College = { name: 'Redlands', img: RedlandsLogo };
 
 
 const user: User = {
@@ -222,7 +221,7 @@ const projects: Project[] = [
         ],
         startMonth: 9,
         startYear: 2022,
-        image: SB3Logo,
+        img: SB3Logo,
     },
     {
         title: 'Personal Portfolio Website',
@@ -241,7 +240,7 @@ const projects: Project[] = [
         ],
         startMonth: 7,
         startYear: 2023,
-        image: B2The3PortfoliioLogo,
+        img: B2The3PortfoliioLogo,
     }
 ];
 
@@ -263,12 +262,9 @@ const education: Education[] = [
         honors: [],
         clubs: [],
         courses: [],
-        icon: ColumbiaLogo,
     },
     {
-        school: {
-            name: 'University of Redlands',
-        },
+        school: redlands,
         degree: 'B.A. Physics',
         gpa: 3.92,
         startMonth: 9,
@@ -283,7 +279,6 @@ const education: Education[] = [
         honors: [],
         clubs: [],
         courses: [],
-        icon: RedlandsLogo,
     }
 ];
 

@@ -96,7 +96,7 @@ class DetailsFrame extends React.Component<Props, State> {
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                     <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <div className="flex">
-                            <img className='h-12 mr-4 rounded' src={ education.icon } alt={ education.school.name }/>
+                            <img className='h-12 mr-4 rounded' src={ education.school.img } alt={ education.school.name }/>
                             <div>
                                 <div className='text-lg text-white'>
                                     { education.school.name } - { education.degree }
@@ -118,7 +118,7 @@ class DetailsFrame extends React.Component<Props, State> {
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                     <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
                         <div className="flex mb-2">
-                            <img className='h-12 mr-4 rounded' src={ project.image } alt={ project.title }/>
+                            <img className='h-12 mr-4 rounded' src={ project.img } alt={ project.title }/>
                             <div>
                                 <div className='text-lg text-whiteflex items-center'>
                                     { project.title }
