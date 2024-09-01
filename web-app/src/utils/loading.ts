@@ -10,11 +10,24 @@
  */
 function preloadImages(images: string[]): void {
     images.forEach((picture: string) => {
-        if (!picture) return;
-        const img = new Image();
-        img.src = picture;
+        preloadImage(picture);
     });
 }
 
+/**
+ * Preloads an image to prevent flickering when it is first displayed.
+ * 
+ * @param src - The image path to preload.
+ * @returns Promise that resolves when the image is loaded.
+ */
+function preloadImage(src: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = resolve as any;
+      img.onerror = reject;
+    });
+  };
 
-export { preloadImages };
+
+export { preloadImages, preloadImage };
