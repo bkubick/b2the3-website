@@ -8,6 +8,7 @@ import { WorkExperience } from 'src/interface/portfolio/work-experience';
 import B2The3PortfoliioLogo from 'src/static/img/icons/b2the3_portfolio_logo.png';
 import CatalantTechnologiesLogo from 'src/static/img/icons/catalant_technologies_logo.png';
 import ColumbiaLogo from 'src/static/img/icons/columbia_logo.png';
+import HeartFlowLogo from 'src/static/img/icons/heartflow_logo.png';
 import PSIEnginesLogo from 'src/static/img/icons/psi_logo.png';
 import RedlandsLogo from 'src/static/img/icons/redlands_logo.png';
 import SB3Logo from 'src/static/img/icons/sb3_logo.png';
@@ -36,7 +37,7 @@ const user: User = {
         linkedIn: 'https://www.linkedin.com/in/brandonkubick/',
     },
     about: `<p>
-                I am a highly motivated individual seeking a mid-level position in Software Engineering.
+                I am a highly motivated individual working as a full-stack engineer.
                 With a background as a Full-Stack Software Developer, and as an R&D Aerospace Engineer,
                 I have excelled in both fields due to my strong focus, dedication, and passion for learning.
 
@@ -66,6 +67,22 @@ const user: User = {
 
 
 const workExperiences: WorkExperience[] = [
+    {
+        company: {
+            name: 'HeartFlow',
+            img: HeartFlowLogo,
+        },
+        jobTitle: 'Software Engineer II',
+        description: '',
+        details: [
+            'Developed and maintained the company\'s internal UI and API, enhancing user experience and performance.',
+            'Collaborated with cross-functional teams to deliver high-quality software solutions, and fostered effective communication to ensure alignment on project goals.',
+        ],
+        startMonth: 1,
+        startYear: 2024,
+        technologies: [Technology.PYTHON, Technology.VUE, Technology.AWS, Technology.TYPESCRIPT, Technology.DOCKER],
+        professionalSkills: [ProfessionalSkill.SYSTEM_ARCHITECTURE, ProfessionalSkill.PRESENTATIONS, ProfessionalSkill.PROBLEM_SOLVING]
+    },
     {
         company: {
             name: 'Catalant Technologies',
@@ -224,11 +241,11 @@ const projects: Project[] = [
         img: SB3Logo,
     },
     {
-        title: 'Personal Portfolio Website',
+        title: 'Personal Website',
         details: [
-            'Built a personal portfolio website to showcase my professional experience and projects.',
-            'Implemented a Vue3 and TypeScript frontend, and a Flask backend api.',
-            'Utilized Docker for containerization, and deployed the website on AWS.'
+            'Building out a personal portfolio website to showcase my professional experience, projects, and skill set.',
+            'Utilizing React, TypeScript, and Tailwind CSS to create a responsive and visually appealing design.',
+            'Deploying the website on AWS Amplify to ensure fast load times and high availability.',
         ],
         technologies: [
             Technology.REACT,
@@ -236,7 +253,7 @@ const projects: Project[] = [
             Technology.TAILWIND,
             Technology.AWS,
             Technology.WEBPACK,
-            Technology.GIT
+            Technology.GIT,
         ],
         startMonth: 7,
         startYear: 2023,

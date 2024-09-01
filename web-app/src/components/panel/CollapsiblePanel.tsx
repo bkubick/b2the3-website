@@ -29,7 +29,7 @@ const CollapsiblePanel = ({children}: { children: ChildrenProps }) => {
 
     // Render the panel
     return (
-        <div className={`cursor-pointer grid grid-flow-col auto-cols-auto ${isOpen ? 'open' : ''}`} onClick={togglePanel}>
+        <div className={`cursor-pointer grid grid-flow-col grid-cols-[auto_1fr] ${isOpen ? 'open' : ''}`} onClick={togglePanel}>
             {children.icon ? <div>{children.icon}</div> : null}
             <div>
                 <div>{children.header}</div>

@@ -55,8 +55,8 @@ class DetailsFrame extends React.Component<Props, State> {
             <InView key={ workExperience.company.name + workExperience.jobTitle }>
                 {({ inView, ref }: { inView: boolean, ref: React.RefObject<HTMLDivElement> }) => (
                     <div ref={ ref } className={ `card p-2 mb-6 ${inView ? 'animate-fade-in' : ''}`}>
-                        <div className='grid grid-flow-col auto-cols-auto'>
-                            <img className='col-auto w-12 mr-4 rounded' src={ workExperience.company.img } alt={ workExperience.company.img }/>
+                        <div className='grid grid-flow-col grid-cols-[auto_1fr]'>
+                            <img className='w-12 mr-4 rounded' src={ workExperience.company.img } alt={ workExperience.company.img }/>
                             <div>
                                 <div>
                                     <div className='text-lg text-slate-300'>
