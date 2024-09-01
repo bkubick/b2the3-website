@@ -35,8 +35,6 @@ function addKeyDownListener(keyCode: string,
                             shiftKey: boolean = true,
                             ctrlKey: boolean = true): void {
     document.addEventListener('keydown', (event: KeyboardEvent) => {
-        event.preventDefault();
-
         const shiftKeyCondition: boolean = shiftKey ? event.shiftKey : true;
         const ctrlKeyCondition: boolean = ctrlKey ? event.ctrlKey : true;
 
